@@ -6,7 +6,7 @@
 
 ### Products
 
-#### Outpost — The Autonomous Airspace Network
+#### Outpost. — The Autonomous Airspace Network
 The primary product. Outpost is a two-sided platform connecting two distinct user groups:
 
 - **Hosts** — property owners or operators who open their physical locations as nodes in the airspace network (landing pads, charging stations, relay points).
@@ -36,7 +36,7 @@ No external codebase or Figma link was provided. This design system was built fr
 
 ### Casing & Punctuation
 - **earthity**: always lowercase, no exceptions — in headlines, at the start of sentences, everywhere.
-- **Outpost**: Title case, treated as a proper noun.
+- **Outpost.**: Title case, treated as a proper noun. When used as a standalone label (nav items, card titles, UI headings, section titles), always followed by a period — "Outpost." Mid-sentence prose uses no trailing period.
 - **Drone Program Integration**: Title case as a product name.
 - Headlines: sentence case (only first word + proper nouns capitalized).
 - No Oxford serial comma avoidance — use the Oxford comma.
