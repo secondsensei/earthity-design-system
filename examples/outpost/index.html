@@ -27,7 +27,7 @@ function Nav({ view, setView }) {
   const links = [['landing','Overview'],['host','Host portal'],['operator','Operator portal'],['network','Network']];
   return (
     <nav className="eu-nav eu-nav--dark">
-      <a href="#" className="eu-nav__wordmark" onClick={(e) => { e.preventDefault(); setView('landing'); }}>Outpost</a>
+      <a href="#" className="eu-nav__wordmark" onClick={(e) => { e.preventDefault(); setView('landing'); }}>Outpost.</a>
       {links.map(([v, label]) => (
         <a key={v} href="#" className="eu-nav__link" aria-current={view === v ? 'page' : undefined}
            onClick={(e) => { e.preventDefault(); setView(v); }}>{label}</a>
