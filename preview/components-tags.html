@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Tags &amp; notifications — earthity</title>
+<link rel="stylesheet" href="../earthity-tokens.css">
+<link rel="stylesheet" href="../earthity-components.css">
+<style>
+  body { background: var(--eu-background); padding: var(--spacing-06); font-family: var(--font-sans); }
+  .section { font-size: 11px; font-weight: var(--fw-semibold); color: var(--eu-text-secondary); letter-spacing: 0.32px; margin-bottom: var(--spacing-04); margin-top: var(--spacing-05); }
+  .section:first-child { margin-top: 0; }
+  .row { display: flex; gap: var(--spacing-02); flex-wrap: wrap; margin-bottom: var(--spacing-03); align-items: center; }
+  .stack { display: flex; flex-direction: column; gap: var(--spacing-01); }
+</style>
+</head>
+<body>
+  <div class="section">TAGS — STATUS</div>
+  <div class="row">
+    <span class="eu-tag eu-tag--success">Active</span>
+    <span class="eu-tag eu-tag--neutral">Inactive</span>
+    <span class="eu-tag eu-tag--info">Pending</span>
+    <span class="eu-tag eu-tag--error">Error</span>
+    <span class="eu-tag eu-tag--warning">Warning</span>
+    <span class="eu-tag eu-tag--draft">Draft</span>
+  </div>
+
+  <div class="section">TAGS — ENTITY TYPE</div>
+  <div class="row">
+    <span class="eu-tag eu-tag--host">Host</span>
+    <span class="eu-tag eu-tag--operator">Operator</span>
+    <span class="eu-tag eu-tag--dsp">DSP</span>
+    <span class="eu-tag eu-tag--info">IT provider</span>
+    <span class="eu-tag eu-tag--draft">Enterprise</span>
+  </div>
+
+  <div class="section">TAGS — SITE ATTRIBUTES</div>
+  <div class="row">
+    <span class="eu-tag">Landing pad</span>
+    <span class="eu-tag">Charging station</span>
+    <span class="eu-tag">Relay node</span>
+    <span class="eu-tag eu-tag--info">NE corridor</span>
+    <span class="eu-tag eu-tag--success">Verified</span>
+    <span class="eu-tag eu-tag--error">Restricted</span>
+  </div>
+
+  <div class="section">INTERACTIVE — FILTER CHIPS (hover, focus, selected)</div>
+  <div class="row">
+    <button class="eu-tag eu-tag--interactive" style="border: none;">All</button>
+    <button class="eu-tag eu-tag--interactive eu-tag--selected" style="border: none;">Active corridors</button>
+    <button class="eu-tag eu-tag--interactive" style="border: none;">Pending</button>
+    <button class="eu-tag eu-tag--interactive" style="border: none;">Restricted</button>
+    <button class="eu-tag eu-tag--interactive" style="border: none; outline: 2px solid var(--eu-focus); outline-offset: 2px;">Focus example</button>
+  </div>
+
+  <div class="section">REMOVABLE TAGS</div>
+  <div class="row">
+    <span class="eu-tag eu-tag--info">Operator: NE Aero DSP <button class="eu-tag__close" aria-label="Remove filter">✕</button></span>
+    <span class="eu-tag eu-tag--success">Status: Active <button class="eu-tag__close" aria-label="Remove filter">✕</button></span>
+    <span class="eu-tag">Region: Northeast <button class="eu-tag__close" aria-label="Remove filter">✕</button></span>
+  </div>
+
+  <div class="section">NOTIFICATION — INLINE ALERT</div>
+  <div class="stack">
+    <div class="eu-notification" role="status">
+      <div class="eu-notification__icon" aria-hidden="true">i</div>
+      <div class="eu-notification__body"><span class="eu-notification__title">Corridor NE-BOS-04 is active.</span> 3 operators currently authorized. Flight window closes at 22:00 EST.</div>
+      <button class="eu-notification__close" aria-label="Dismiss">✕</button>
+    </div>
+    <div class="eu-notification eu-notification--success" role="status">
+      <div class="eu-notification__icon" aria-hidden="true">✓</div>
+      <div class="eu-notification__body"><span class="eu-notification__title">Site registration complete.</span> Boston Logistics Hub is now live on the Outpost network.</div>
+      <button class="eu-notification__close" aria-label="Dismiss">✕</button>
+    </div>
+    <div class="eu-notification eu-notification--warning" role="status">
+      <div class="eu-notification__icon" aria-hidden="true">!</div>
+      <div class="eu-notification__body"><span class="eu-notification__title">Availability window ending soon.</span> Your flight window closes in 2 hours. Update your schedule to extend access.</div>
+      <button class="eu-notification__close" aria-label="Dismiss">✕</button>
+    </div>
+    <div class="eu-notification eu-notification--error" role="alert">
+      <div class="eu-notification__icon" aria-hidden="true">✕</div>
+      <div class="eu-notification__body"><span class="eu-notification__title">Operator ID not recognized.</span> DSP-XXXXX format required. <a href="#" style="color: var(--red-60); text-decoration: underline;">View requirements →</a></div>
+      <button class="eu-notification__close" aria-label="Dismiss">✕</button>
+    </div>
+  </div>
+
+  <div class="section">FULL-WIDTH BANNER (dark)</div>
+  <div class="eu-banner" role="status">
+    <div class="eu-banner__dot" aria-hidden="true"></div>
+    <div class="eu-banner__body">Outpost network status: <strong>All corridors operational</strong> · 247 sites active</div>
+    <a href="#" class="eu-banner__link">View status →</a>
+    <button class="eu-banner__close" aria-label="Dismiss banner">✕</button>
+  </div>
+</body>
+</html>

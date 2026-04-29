@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Buttons — earthity</title>
+<link rel="stylesheet" href="../earthity-tokens.css">
+<link rel="stylesheet" href="../earthity-components.css">
+<style>
+  body { background: var(--eu-background); padding: var(--spacing-06); }
+  .section { font-size: 11px; font-weight: var(--fw-semibold); color: var(--eu-text-secondary); letter-spacing: 0.32px; margin-bottom: var(--spacing-04); margin-top: var(--spacing-05); font-family: var(--font-sans); }
+  .section:first-child { margin-top: 0; }
+  .row { display: flex; gap: var(--spacing-01); align-items: center; flex-wrap: wrap; margin-bottom: var(--spacing-03); }
+  .states-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--spacing-04); margin-bottom: var(--spacing-03); }
+  .state-col { display: flex; flex-direction: column; align-items: stretch; gap: var(--spacing-02); }
+  .state-label { font-family: var(--font-sans); font-size: 10px; color: var(--gray-50); letter-spacing: 0.32px; text-align: center; }
+  .surface-dark { background: var(--gray-100); padding: var(--spacing-05); }
+</style>
+</head>
+<body>
+  <div class="section">PRIMARY BUTTON — SIZES</div>
+  <div class="row">
+    <button class="eu-btn eu-btn--primary eu-btn--sm">Connect site</button>
+    <button class="eu-btn eu-btn--primary eu-btn--md">Connect site</button>
+    <button class="eu-btn eu-btn--primary eu-btn--lg">Connect site</button>
+  </div>
+
+  <div class="section">VARIANTS</div>
+  <div class="row">
+    <button class="eu-btn eu-btn--primary">Primary</button>
+    <button class="eu-btn eu-btn--secondary">Secondary</button>
+    <button class="eu-btn eu-btn--tertiary">Tertiary</button>
+    <button class="eu-btn eu-btn--ghost">Ghost</button>
+    <button class="eu-btn eu-btn--danger">Danger</button>
+    <button class="eu-btn eu-btn--primary" disabled>Disabled</button>
+  </div>
+
+  <div class="section">PRIMARY — INTERACTIVE STATES</div>
+  <div class="states-grid">
+    <div class="state-col">
+      <span class="state-label">DEFAULT</span>
+      <button class="eu-btn eu-btn--primary eu-btn--symmetric">Request access</button>
+    </div>
+    <div class="state-col">
+      <span class="state-label">HOVER</span>
+      <button class="eu-btn eu-btn--primary eu-btn--symmetric" style="background: var(--blue-60-hover);">Request access</button>
+    </div>
+    <div class="state-col">
+      <span class="state-label">ACTIVE</span>
+      <button class="eu-btn eu-btn--primary eu-btn--symmetric" style="background: var(--blue-80);">Request access</button>
+    </div>
+    <div class="state-col">
+      <span class="state-label">FOCUS</span>
+      <button class="eu-btn eu-btn--primary eu-btn--symmetric" style="outline: 2px solid var(--eu-focus); outline-offset: 2px; box-shadow: inset 0 0 0 2px var(--eu-focus), inset 0 0 0 3px var(--eu-focus-inset);">Request access</button>
+    </div>
+    <div class="state-col">
+      <span class="state-label">DISABLED</span>
+      <button class="eu-btn eu-btn--primary eu-btn--symmetric" disabled>Request access</button>
+    </div>
+  </div>
+
+  <div class="section">LOADING STATE</div>
+  <div class="row">
+    <button class="eu-btn eu-btn--primary eu-btn--symmetric" aria-busy="true" aria-live="polite">
+      <span class="eu-btn__spinner" aria-hidden="true"></span>
+      <span class="eu-btn__label">Connecting site…</span>
+    </button>
+    <button class="eu-btn eu-btn--secondary eu-btn--symmetric" aria-busy="true">
+      <span class="eu-btn__spinner" aria-hidden="true"></span>
+      <span class="eu-btn__label">Loading</span>
+    </button>
+  </div>
+
+  <div class="section">ASYMMETRIC vs SYMMETRIC PADDING</div>
+  <div class="row">
+    <button class="eu-btn eu-btn--primary">Default — asymmetric (icon-space)</button>
+    <button class="eu-btn eu-btn--primary eu-btn--symmetric">eu-btn--symmetric</button>
+  </div>
+
+  <div class="section">ON DARK SURFACE</div>
+  <div class="surface-dark">
+    <div class="row">
+      <button class="eu-btn eu-btn--primary">View network</button>
+      <button class="eu-btn eu-btn--secondary">Learn more</button>
+      <button class="eu-btn eu-btn--tertiary eu-btn--on-dark">Contact</button>
+      <button class="eu-btn eu-btn--ghost eu-btn--on-dark">Ghost →</button>
+    </div>
+  </div>
+</body>
+</html>

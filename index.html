@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>earthity Design System</title>
+<link rel="stylesheet" href="earthity-tokens.css">
+<link rel="stylesheet" href="earthity-components.css">
+<style>
+  body { background: var(--gray-100); color: var(--gray-10); min-height: 100vh; font-family: var(--font-sans); }
+  .hero { padding: var(--spacing-12) var(--spacing-10) var(--spacing-09); max-width: var(--grid-max-width); }
+  .hero__eyebrow { font-family: var(--font-mono); font-size: var(--type-caption-01-size); color: var(--gray-60); letter-spacing: var(--type-caption-01-ls); text-transform: uppercase; margin-bottom: var(--spacing-06); }
+  .hero__title { font-family: var(--font-brand); font-size: var(--type-display-01-size); font-weight: var(--type-display-01-weight); line-height: var(--type-display-01-lh); color: var(--white); margin-bottom: var(--spacing-05); }
+  .hero__title strong { font-weight: var(--fw-bold); }
+  .hero__sub { font-size: var(--type-body-long-01-size); line-height: var(--type-body-long-01-lh); color: var(--gray-30); max-width: 640px; }
+  .hero__meta { display: flex; gap: var(--spacing-06); margin-top: var(--spacing-06); font-family: var(--font-mono); font-size: var(--type-caption-01-size); color: var(--gray-50); letter-spacing: var(--type-caption-01-ls); text-transform: uppercase; }
+
+  .body { background: var(--white); color: var(--eu-text-primary); padding: var(--spacing-10); }
+  .body-inner { max-width: var(--grid-max-width); }
+
+  .group { margin-bottom: var(--spacing-11); }
+  .group:last-child { margin-bottom: 0; }
+  .group__header { border-bottom: 1px solid var(--gray-20); padding-bottom: var(--spacing-04); margin-bottom: var(--spacing-06); display: flex; align-items: baseline; justify-content: space-between; }
+  .group__title { font-family: var(--font-sans); font-size: var(--type-heading-02-size); font-weight: var(--fw-light); color: var(--eu-text-primary); letter-spacing: -0.5px; }
+  .group__count { font-family: var(--font-mono); font-size: var(--type-caption-01-size); color: var(--gray-50); letter-spacing: var(--type-caption-01-ls); text-transform: uppercase; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--spacing-01); }
+
+  .card { background: var(--gray-10); padding: var(--spacing-06); text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: var(--spacing-03); transition: background-color 70ms ease; cursor: pointer; min-height: 140px; justify-content: space-between; }
+  .card:hover { background: var(--gray-10-hover); }
+  .card:focus-visible { outline: 2px solid var(--eu-focus); outline-offset: 2px; }
+  .card__top { display: flex; flex-direction: column; gap: var(--spacing-02); }
+  .card__eyebrow { font-family: var(--font-mono); font-size: 10px; color: var(--gray-50); letter-spacing: 0.32px; text-transform: uppercase; }
+  .card__title { font-size: var(--type-heading-04-size); font-weight: var(--fw-semibold); line-height: var(--type-heading-04-lh); color: var(--eu-text-primary); }
+  .card__body { font-size: var(--type-body-short-01-size); color: var(--eu-text-secondary); letter-spacing: var(--type-body-short-01-ls); line-height: var(--type-body-short-01-lh); }
+  .card__arrow { color: var(--blue-60); font-size: 16px; align-self: flex-end; }
+
+  .footer { background: var(--gray-100); color: var(--gray-50); padding: var(--spacing-09) var(--spacing-10); font-size: var(--type-caption-01-size); letter-spacing: var(--type-caption-01-ls); display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--spacing-04); }
+  .footer a { color: var(--blue-40); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__eyebrow">earthity Design System · v1.0</div>
+    <h1 class="hero__title"><strong>earthity</strong><br>design system.</h1>
+    <p class="hero__sub">Tokens, components, and patterns for the autonomous airspace network. Inherits from IBM Carbon. Token-driven. Radically rectangular. Dark by default.</p>
+    <div class="hero__meta">
+      <span>18 preview pages</span>
+      <span>2 stylesheets</span>
+      <span>eu-* prefix · BEM</span>
+      <span>Submodule consumption</span>
+    </div>
+  </header>
+
+  <main class="body">
+    <div class="body-inner">
+
+      <section class="group">
+        <div class="group__header">
+          <h2 class="group__title">Foundations</h2>
+          <span class="group__count">8 pages</span>
+        </div>
+        <div class="grid">
+          <a href="preview/colors-primary.html" class="card">
+            <div class="card__top">
+              <span class="card__eyebrow">COLOR / PRIMARY</span>
+              <span class="card__title">Primary &amp; interactive</span>
+              <span class="card__body">Blue scale (10–100), interactive states.</span>
+            </div>
+            <span class="card__arrow">→</span>
+          </a>
+          <a href="preview/colors-neutral.html" class="card">
+            <div class="card__top">
+              <span class="card__eyebrow">COLOR / NEUTRAL</span>
+              <span class="card__title">Gray scale</span>
+              <span class="card__body">Full gray ramp, dark + light surface layering.</span>
+            </div>
+            <span class="card__arrow">→</span>
+          </a>
+          <a href="preview/colors-semantic.html" class="card">
+            <div class="card__top">
+              <span class="card__eyebrow">COLOR / SEMANTIC</span>
+              <span class="card__title">Status &amp; tokens</span>
+              <span class="card__body">Status colors, tints, eu- semantic tokens.</span>
+            </div>
+            <span class="card__arrow">→</span>
+          </a>
+          <a href="preview/type-display.html" class="card">
+            <div class="card__top">
+              <span class="card__eyebrow">TYPE / DISPLAY</span>
+              <span class="card__title">Display &amp; headings</span>
+              <span class="card__body">Manrope display, Plex Sans headings.</span>
+            </div>
+            <span class="card__arrow">→</span>
+          </a>
+          <a href="preview/type-body.html" class="card">
+            <div class="card__top">
+              <span class="card__eyebrow">TYPE / BODY</span>
+              <span class="card__title">Body &amp; caption</span>
+              <span class="card__body">Body, label, caption, link states.</span>
+            </div>
+            <span class="card__arrow">→</span>
+          </a>
+          <a href="preview/type-mono.html" class="card">
+            <div class="card__top">
+              <span class="card__eyebrow">TYPE / MONO</span>
+              <span class="card__title">Mono specimens</span>
+              <span class="card__body">IBM Plex Mono — IDs, code, data readouts.</span>
+            </div>
+            <span class="card__arrow">→</span>
+          </a>
+          <a href="preview/spacing-tokens.html" class="card">
+            <div class="card__top">
+              <span class="card__eyebrow">SPACING</span>
+              <span class="card__title">Spacing &amp; radius</span>
+              <span class="card__body">--spacing-01 through 13, radii (none/pill/circle).</span>
+            </div>
+            <span class="card__arrow">→</span>
+          </a>
+          <a href="preview/elevation.html" class="card">
+            <div class="card__top">
+              <span class="card__eyebrow">ELEVATION</span>
+              <span class="card__title">Layers &amp; focus ring</span>
+              <span class="card__body">Surface layering, floating shadow, focus system.</span>
+            </div>
+            <span class="card__arrow">→</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="group">
+        <div class="group__header">
+          <h2 class="group__title">Components</h2>
+          <span class="group__count">10 pages</span>
+        </div>
+        <div class="grid">
+          <a href="preview/components-buttons.html" class="card">
+            <div class="card__top">
+              <span class="card__eyebrow">COMPONENT</span>
+              <span class="card__title">Buttons</span>
+              <span class="card__body">5 variants, 3 sizes, all states, loading, on-dark.</span>
+            </div>
+            <span class="card__arrow">→</span>
+          </a>
+          <a href="preview/components-inputs.html" class="card">
+            <div class="card__top">
+              <span class="card__eyebrow">COMPONENT</span>
+              <span class="card__title">Inputs</span>
+              <span class="card__body">Text, select, textarea, checkbox, radio. All states.</span>
+            </div>
+            <span class="card__arrow">→</span>
+          </a>
+          <a href="preview/components-forms.html" class="card">
+            <div class="card__top">
+              <span class="card__eyebrow">COMPONENT</span>
+              <span class="card__title">Forms</span>
+              <span class="card__body">Toggle, search, file upload, multi-step layout.</span>
+            </div>
+            <span class="card__arrow">→</span>
+          </a>
+          <a href="preview/components-cards.html" class="card">
+            <div class="card__top">
+              <span class="card__eyebrow">COMPONENT</span>
+              <span class="card__title">Cards &amp; tiles</span>
+              <span class="card__body">Light, layer-01, dark, blue. Interactive + focus.</span>
+            </div>
+            <span class="card__arrow">→</span>
+          </a>
+          <a href="preview/components-nav.html" class="card">
+            <div class="card__top">
+              <span class="card__eyebrow">COMPONENT</span>
+              <span class="card__title">Navigation</span>
+              <span class="card__body">Primary nav, tabs, dark sidebar.</span>
+            </div>
+            <span class="card__arrow">→</span>
+          </a>
+          <a href="preview/components-tags.html" class="card">
+            <div class="card__top">
+              <span class="card__eyebrow">COMPONENT</span>
+              <span class="card__title">Tags &amp; notifications</span>
+              <span class="card__body">Status tags, filter chips, removable, banner.</span>
+            </div>
+            <span class="card__arrow">→</span>
+          </a>
+          <a href="preview/components-icons.html" class="card">
+            <div class="card__top">
+              <span class="card__eyebrow">COMPONENT</span>
+              <span class="card__title">Icons</span>
+              <span class="card__body">Carbon subset · 16/20/24/32 · currentColor.</span>
+            </div>
+            <span class="card__arrow">→</span>
+          </a>
+          <a href="preview/components-overlays.html" class="card">
+            <div class="card__top">
+              <span class="card__eyebrow">COMPONENT</span>
+              <span class="card__title">Overlays</span>
+              <span class="card__body">Modal, details, combobox, popover. Spec sheets.</span>
+            </div>
+            <span class="card__arrow">→</span>
+          </a>
+          <a href="preview/components-feedback.html" class="card">
+            <div class="card__top">
+              <span class="card__eyebrow">COMPONENT</span>
+              <span class="card__title">Feedback</span>
+              <span class="card__body">Empty, skeletons, errors, toasts, dismissals.</span>
+            </div>
+            <span class="card__arrow">→</span>
+          </a>
+          <a href="preview/components-data.html" class="card">
+            <div class="card__top">
+              <span class="card__eyebrow">COMPONENT</span>
+              <span class="card__title">Data display</span>
+              <span class="card__body">Stat blocks, mono-IDs, tables (default + zebra).</span>
+            </div>
+            <span class="card__arrow">→</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="group">
+        <div class="group__header">
+          <h2 class="group__title">Worked example</h2>
+          <span class="group__count">Outpost</span>
+        </div>
+        <div class="grid">
+          <a href="examples/outpost/index.html" class="card">
+            <div class="card__top">
+              <span class="card__eyebrow">EXAMPLE</span>
+              <span class="card__title">Outpost</span>
+              <span class="card__body">The autonomous airspace network — host portal, operator portal, and network map, built entirely on the system.</span>
+            </div>
+            <span class="card__arrow">→</span>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div>earthity design system · v1.0 · Visual lineage: IBM Carbon</div>
+    <div>
+      <a href="README.md">README</a> ·
+      <a href="CLAUDE.md">CLAUDE.md</a> ·
+      <a href="AUDIT.md">Audit</a>
+    </div>
+  </footer>
+</body>
+</html>

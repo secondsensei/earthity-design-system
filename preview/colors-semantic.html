@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Semantic color — earthity</title>
+<link rel="stylesheet" href="../earthity-tokens.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); background: var(--eu-background); padding: var(--spacing-06); }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-01); margin-bottom: var(--spacing-05); }
+  .swatch { height: 64px; display: flex; flex-direction: column; justify-content: flex-end; padding: var(--spacing-03); }
+  .label { font-size: 10px; font-weight: var(--fw-semibold); letter-spacing: 0.32px; }
+  .hex { font-size: 9px; letter-spacing: 0.16px; opacity: 0.75; margin-top: var(--spacing-01); }
+  .section { font-size: 11px; font-weight: var(--fw-semibold); color: var(--eu-text-secondary); letter-spacing: 0.32px; margin-bottom: var(--spacing-03); }
+  .token-row { display: flex; align-items: center; gap: var(--spacing-04); padding: 6px 0; border-bottom: 1px solid var(--gray-20); }
+  .token-dot { width: 20px; height: 20px; flex-shrink: 0; }
+  .token-name { font-size: 11px; color: var(--eu-text-secondary); letter-spacing: 0.16px; flex: 1; font-family: var(--font-mono); }
+  .token-val { font-size: 10px; color: var(--gray-50); }
+</style>
+</head>
+<body>
+  <div class="section">STATUS COLORS</div>
+  <div class="grid">
+    <div class="swatch" style="background: var(--red-60)"><span class="label" style="color: var(--white)">Error / Danger</span><span class="hex" style="color: var(--white)">#da1e28 Red 60</span></div>
+    <div class="swatch" style="background: var(--green-50)"><span class="label" style="color: var(--white)">Success</span><span class="hex" style="color: var(--white)">#24a148 Green 50</span></div>
+    <div class="swatch" style="background: var(--yellow-30)"><span class="label" style="color: var(--gray-100)">Warning</span><span class="hex" style="color: var(--gray-100)">#f1c21b Yellow 30</span></div>
+    <div class="swatch" style="background: var(--blue-60)"><span class="label" style="color: var(--white)">Info</span><span class="hex" style="color: var(--white)">#0f62fe Blue 60</span></div>
+    <div class="swatch" style="background: var(--red-10); outline: 1px solid var(--gray-20);"><span class="label" style="color: var(--red-60)">Error tint</span><span class="hex" style="color: var(--red-60)">#fff1f1 Red 10</span></div>
+    <div class="swatch" style="background: var(--green-10); outline: 1px solid var(--gray-20);"><span class="label" style="color: var(--green-50)">Success tint</span><span class="hex" style="color: var(--green-50)">#defbe6 Green 10</span></div>
+    <div class="swatch" style="background: var(--yellow-10); outline: 1px solid var(--gray-20);"><span class="label" style="color: var(--gray-60)">Warning tint</span><span class="hex" style="color: var(--gray-60)">#fcf4d6 Yellow 10</span></div>
+    <div class="swatch" style="background: var(--blue-10); outline: 1px solid var(--gray-20);"><span class="label" style="color: var(--blue-60)">Info tint</span><span class="hex" style="color: var(--blue-60)">#edf5ff Blue 10</span></div>
+  </div>
+
+  <div class="section" style="margin-top: var(--spacing-05)">SEMANTIC TOKENS</div>
+  <div class="token-row"><div class="token-dot" style="background: var(--gray-100)"></div><span class="token-name">--eu-text-primary</span><span class="token-val">Gray 100 #161616</span></div>
+  <div class="token-row"><div class="token-dot" style="background: var(--gray-70)"></div><span class="token-name">--eu-text-secondary</span><span class="token-val">Gray 70 #525252</span></div>
+  <div class="token-row"><div class="token-dot" style="background: var(--gray-60)"></div><span class="token-name">--eu-text-placeholder</span><span class="token-val">Gray 60 #6f6f6f</span></div>
+  <div class="token-row"><div class="token-dot" style="background: var(--blue-60)"></div><span class="token-name">--eu-link-primary</span><span class="token-val">Blue 60 #0f62fe</span></div>
+  <div class="token-row"><div class="token-dot" style="background: var(--gray-10); outline: 1px solid var(--gray-20)"></div><span class="token-name">--eu-layer-01</span><span class="token-val">Gray 10 #f4f4f4</span></div>
+  <div class="token-row"><div class="token-dot" style="background: var(--gray-30)"></div><span class="token-name">--eu-border-subtle</span><span class="token-val">Gray 30 #c6c6c6</span></div>
+  <div class="token-row"><div class="token-dot" style="background: var(--red-60)"></div><span class="token-name">--eu-support-error</span><span class="token-val">Red 60 #da1e28</span></div>
+  <div class="token-row"><div class="token-dot" style="background: var(--green-50)"></div><span class="token-name">--eu-support-success</span><span class="token-val">Green 50 #24a148</span></div>
+</body>
+</html>

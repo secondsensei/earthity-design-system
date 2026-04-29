@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Data display — earthity</title>
+<link rel="stylesheet" href="../earthity-tokens.css">
+<link rel="stylesheet" href="../earthity-components.css">
+<style>
+  body { background: var(--eu-background); padding: var(--spacing-06); font-family: var(--font-sans); }
+  .section { font-size: 11px; font-weight: var(--fw-semibold); color: var(--eu-text-secondary); letter-spacing: 0.32px; margin-bottom: var(--spacing-04); margin-top: var(--spacing-05); text-transform: uppercase; }
+  .section:first-child { margin-top: 0; }
+  .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-01); margin-bottom: var(--spacing-04); }
+  .filter-row { display: flex; gap: var(--spacing-02); flex-wrap: wrap; align-items: center; padding: var(--spacing-04); background: var(--gray-10); margin-bottom: var(--spacing-01); }
+</style>
+</head>
+<body>
+  <div class="section">STAT BLOCKS — LIGHT</div>
+  <div class="stat-row">
+    <div class="eu-stat">
+      <span class="eu-stat__label">Sites active</span>
+      <span class="eu-stat__value">247</span>
+    </div>
+    <div class="eu-stat">
+      <span class="eu-stat__label">Operators</span>
+      <span class="eu-stat__value">89</span>
+    </div>
+    <div class="eu-stat">
+      <span class="eu-stat__label">Flights today</span>
+      <span class="eu-stat__value">1,402</span>
+    </div>
+    <div class="eu-stat eu-stat--accent">
+      <span class="eu-stat__label">Corridors</span>
+      <span class="eu-stat__value">34</span>
+    </div>
+  </div>
+
+  <div class="section">STAT BLOCKS — DARK</div>
+  <div class="stat-row">
+    <div class="eu-stat eu-stat--dark">
+      <span class="eu-stat__label">Sites active</span>
+      <span class="eu-stat__value">247</span>
+    </div>
+    <div class="eu-stat eu-stat--dark">
+      <span class="eu-stat__label">Operators</span>
+      <span class="eu-stat__value">89</span>
+    </div>
+    <div class="eu-stat eu-stat--dark">
+      <span class="eu-stat__label">Flights today</span>
+      <span class="eu-stat__value" style="color: var(--blue-40);">1,402</span>
+    </div>
+    <div class="eu-stat eu-stat--dark eu-stat--lg">
+      <span class="eu-stat__label">Corridors</span>
+      <span class="eu-stat__value">34</span>
+    </div>
+  </div>
+
+  <div class="section">MONO-ID PATTERN</div>
+  <div style="background: var(--gray-10); padding: var(--spacing-05); display: flex; gap: var(--spacing-07); flex-wrap: wrap;">
+    <div>
+      <div style="font-size: 10px; font-family: var(--font-mono); color: var(--gray-60); letter-spacing: 0.32px; text-transform: uppercase; margin-bottom: var(--spacing-02);">SITE ID</div>
+      <span class="eu-mono-id">OPS-0041-NE</span>
+    </div>
+    <div>
+      <div style="font-size: 10px; font-family: var(--font-mono); color: var(--gray-60); letter-spacing: 0.32px; text-transform: uppercase; margin-bottom: var(--spacing-02);">CORRIDOR</div>
+      <span class="eu-mono-id">NE-BOS-04</span>
+    </div>
+    <div>
+      <div style="font-size: 10px; font-family: var(--font-mono); color: var(--gray-60); letter-spacing: 0.32px; text-transform: uppercase; margin-bottom: var(--spacing-02);">FLIGHT</div>
+      <span class="eu-mono-id">FLT-20260427-0041</span>
+    </div>
+    <div>
+      <div style="font-size: 10px; font-family: var(--font-mono); color: var(--gray-60); letter-spacing: 0.32px; text-transform: uppercase; margin-bottom: var(--spacing-02);">OPERATOR</div>
+      <span class="eu-mono-id">DSP-NE-AERO</span>
+    </div>
+  </div>
+
+  <div class="section">FILTER CHIPS — DATA TABLE FILTERS</div>
+  <div class="filter-row">
+    <span style="font-size: 11px; color: var(--eu-text-secondary); letter-spacing: 0.32px; text-transform: uppercase; font-weight: var(--fw-semibold); margin-right: var(--spacing-02);">FILTERS</span>
+    <span class="eu-tag eu-tag--info">Region: NE <button class="eu-tag__close" aria-label="Clear">✕</button></span>
+    <span class="eu-tag eu-tag--success">Status: Active <button class="eu-tag__close" aria-label="Clear">✕</button></span>
+    <span class="eu-tag">Type: Landing pad <button class="eu-tag__close" aria-label="Clear">✕</button></span>
+    <button class="eu-btn eu-btn--ghost eu-btn--sm eu-btn--symmetric" style="margin-left: auto;">Clear all</button>
+  </div>
+
+  <div class="section">TABLE — DEFAULT</div>
+  <table class="eu-table">
+    <thead>
+      <tr>
+        <th>Site ID</th>
+        <th>Site name</th>
+        <th>Corridor</th>
+        <th>Status</th>
+        <th>Flights</th>
+        <th>Earnings</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="eu-mono-id">OPS-0041</span></td>
+        <td>Boston Logistics Hub</td>
+        <td><span style="font-family: var(--font-mono); font-size: 13px; color: var(--eu-text-secondary);">NE-BOS-04</span></td>
+        <td><span class="eu-tag eu-tag--success">Active</span></td>
+        <td style="font-family: var(--font-mono);">1,402</td>
+        <td style="font-family: var(--font-mono); color: var(--green-50);">$2,840</td>
+      </tr>
+      <tr aria-selected="true">
+        <td><span class="eu-mono-id">OPS-0042</span></td>
+        <td>Hartford Landing</td>
+        <td><span style="font-family: var(--font-mono); font-size: 13px; color: var(--eu-text-secondary);">NE-HFD-02</span></td>
+        <td><span class="eu-tag eu-tag--success">Active</span></td>
+        <td style="font-family: var(--font-mono);">847</td>
+        <td style="font-family: var(--font-mono); color: var(--green-50);">$1,694</td>
+      </tr>
+      <tr>
+        <td><span class="eu-mono-id">OPS-0043</span></td>
+        <td>Providence Relay</td>
+        <td><span style="font-family: var(--font-mono); font-size: 13px; color: var(--eu-text-secondary);">NE-PRV-01</span></td>
+        <td><span class="eu-tag eu-tag--neutral">Inactive</span></td>
+        <td style="font-family: var(--font-mono); color: var(--gray-50);">—</td>
+        <td style="font-family: var(--font-mono); color: var(--gray-50);">$0</td>
+      </tr>
+      <tr>
+        <td><span class="eu-mono-id">OPS-0044</span></td>
+        <td>Worcester Hub</td>
+        <td><span style="font-family: var(--font-mono); font-size: 13px; color: var(--eu-text-secondary);">NE-WOR-03</span></td>
+        <td><span class="eu-tag eu-tag--info">Pending</span></td>
+        <td style="font-family: var(--font-mono); color: var(--gray-50);">0</td>
+        <td style="font-family: var(--font-mono); color: var(--gray-50);">$0</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section">TABLE — ZEBRA STRIPED</div>
+  <table class="eu-table eu-table--zebra">
+    <thead>
+      <tr>
+        <th>Flight ID</th>
+        <th>Operator</th>
+        <th>Corridor</th>
+        <th>Departure</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="eu-mono-id">FLT-20260427-0041</span></td>
+        <td>NE Aero DSP</td>
+        <td><span style="font-family: var(--font-mono); font-size: 13px; color: var(--eu-text-secondary);">NE-BOS-04</span></td>
+        <td style="font-family: var(--font-mono);">14:22 EST</td>
+        <td><span class="eu-tag eu-tag--success">Cleared</span></td>
+      </tr>
+      <tr>
+        <td><span class="eu-mono-id">FLT-20260427-0042</span></td>
+        <td>Skyline Logistics</td>
+        <td><span style="font-family: var(--font-mono); font-size: 13px; color: var(--eu-text-secondary);">NE-HFD-02</span></td>
+        <td style="font-family: var(--font-mono);">14:38 EST</td>
+        <td><span class="eu-tag eu-tag--info">In transit</span></td>
+      </tr>
+      <tr>
+        <td><span class="eu-mono-id">FLT-20260427-0043</span></td>
+        <td>NE Aero DSP</td>
+        <td><span style="font-family: var(--font-mono); font-size: 13px; color: var(--eu-text-secondary);">NE-BOS-04</span></td>
+        <td style="font-family: var(--font-mono);">15:04 EST</td>
+        <td><span class="eu-tag eu-tag--warning">Holding</span></td>
+      </tr>
+      <tr>
+        <td><span class="eu-mono-id">FLT-20260427-0044</span></td>
+        <td>Northern Industries</td>
+        <td><span style="font-family: var(--font-mono); font-size: 13px; color: var(--eu-text-secondary);">NE-PRV-01</span></td>
+        <td style="font-family: var(--font-mono);">15:30 EST</td>
+        <td><span class="eu-tag eu-tag--draft">Scheduled</span></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

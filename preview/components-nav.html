@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Navigation — earthity</title>
+<link rel="stylesheet" href="../earthity-tokens.css">
+<link rel="stylesheet" href="../earthity-components.css">
+<style>
+  body { background: var(--gray-10); font-family: var(--font-sans); }
+  .section { font-size: 11px; font-weight: var(--fw-semibold); color: var(--eu-text-secondary); letter-spacing: 0.32px; margin-bottom: var(--spacing-04); padding: 0 var(--spacing-06); padding-top: var(--spacing-05); }
+</style>
+</head>
+<body>
+  <div class="section" style="padding-top: var(--spacing-06);">PRIMARY NAV — DARK (default brand expression)</div>
+  <nav class="eu-nav eu-nav--dark">
+    <a href="#" class="eu-nav__wordmark">earthity</a>
+    <a href="#" class="eu-nav__link" aria-current="page">Outpost</a>
+    <a href="#" class="eu-nav__link">Drone Program</a>
+    <a href="#" class="eu-nav__link">Network</a>
+    <a href="#" class="eu-nav__link">Docs</a>
+    <div class="eu-nav__right">
+      <a href="#" class="eu-nav__link">Sign in</a>
+      <button class="eu-btn eu-btn--primary eu-btn--symmetric">Get started</button>
+    </div>
+  </nav>
+
+  <div class="section">PRIMARY NAV — LIGHT</div>
+  <nav class="eu-nav">
+    <a href="#" class="eu-nav__wordmark">earthity</a>
+    <a href="#" class="eu-nav__link" aria-current="page">Outpost</a>
+    <a href="#" class="eu-nav__link">Drone Program</a>
+    <a href="#" class="eu-nav__link">Network</a>
+    <a href="#" class="eu-nav__link">Docs</a>
+    <div class="eu-nav__right">
+      <a href="#" class="eu-nav__link">Sign in</a>
+      <button class="eu-btn eu-btn--primary eu-btn--symmetric">Get started</button>
+    </div>
+  </nav>
+
+  <div class="section">APP SUB-NAV / TABS (visual only — consumer wires ARIA + keyboard)</div>
+  <div class="eu-tabs" role="tablist">
+    <button class="eu-tab" role="tab" aria-selected="true">Overview</button>
+    <button class="eu-tab" role="tab" aria-selected="false">Sites</button>
+    <button class="eu-tab" role="tab" aria-selected="false">Corridors</button>
+    <button class="eu-tab" role="tab" aria-selected="false">Operators</button>
+    <button class="eu-tab" role="tab" aria-selected="false">Flights</button>
+    <button class="eu-tab" role="tab" aria-selected="false">Settings</button>
+  </div>
+
+  <div class="section">OPERATOR APP — DARK SIDEBAR</div>
+  <div style="display: flex; height: 200px; padding: 0 var(--spacing-06); gap: 0;">
+    <aside class="eu-sidebar">
+      <div class="eu-sidebar__header">
+        <span style="font-family: var(--font-brand); font-size: 14px; font-weight: var(--fw-bold); color: var(--white);">earthity</span>
+        <span style="font-size: var(--type-caption-01-size); color: var(--gray-60); margin-left: var(--spacing-03); letter-spacing: 0.32px;">Outpost</span>
+      </div>
+      <nav class="eu-sidebar__nav">
+        <a href="#" class="eu-sidebar__item" aria-current="page">Dashboard</a>
+        <a href="#" class="eu-sidebar__item">My sites</a>
+        <a href="#" class="eu-sidebar__item">Flight log</a>
+        <a href="#" class="eu-sidebar__item">Earnings</a>
+        <a href="#" class="eu-sidebar__item">Settings</a>
+      </nav>
+    </aside>
+    <div style="flex: 1; background: var(--gray-10); padding: var(--spacing-06);">
+      <div style="font-size: var(--type-caption-01-size); color: var(--gray-50); letter-spacing: 0.32px;">← Sidebar navigation pattern. Items support :hover, [aria-current="page"], and :focus-visible states.</div>
+    </div>
+  </div>
+</body>
+</html>

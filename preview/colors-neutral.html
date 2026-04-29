@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Neutral color — earthity</title>
+<link rel="stylesheet" href="../earthity-tokens.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); background: var(--eu-background); padding: var(--spacing-06); }
+  .row { display: flex; gap: var(--spacing-01); margin-bottom: var(--spacing-01); }
+  .swatch { flex: 1; height: 72px; display: flex; flex-direction: column; justify-content: flex-end; padding: var(--spacing-03); }
+  .swatch-label { font-size: 11px; font-weight: var(--fw-semibold); letter-spacing: 0.32px; }
+  .swatch-hex { font-size: 10px; letter-spacing: 0.16px; opacity: 0.7; margin-top: var(--spacing-01); }
+  .section-label { font-size: 11px; font-weight: var(--fw-semibold); color: var(--eu-text-secondary); letter-spacing: 0.32px; margin-bottom: var(--spacing-03); }
+  .layering { margin-top: var(--spacing-05); display: flex; gap: var(--spacing-05); }
+  .layering > div { flex: 1; padding: var(--spacing-05); }
+  .layer-row { padding: var(--spacing-04); margin-bottom: var(--spacing-01); }
+  .layer-text { font-size: 11px; letter-spacing: 0.16px; }
+  .layer-section-label { font-size: 11px; font-weight: var(--fw-semibold); letter-spacing: 0.32px; margin-bottom: var(--spacing-04); }
+</style>
+</head>
+<body>
+  <div class="section-label">NEUTRAL GRAY SCALE</div>
+  <div class="row">
+    <div class="swatch" style="background: var(--gray-100)"><span class="swatch-label" style="color: var(--gray-10)">Gray 100</span><span class="swatch-hex" style="color: var(--gray-10)">#161616</span></div>
+    <div class="swatch" style="background: var(--gray-90)"><span class="swatch-label" style="color: var(--gray-10)">Gray 90</span><span class="swatch-hex" style="color: var(--gray-10)">#262626</span></div>
+    <div class="swatch" style="background: var(--gray-80)"><span class="swatch-label" style="color: var(--gray-10)">Gray 80</span><span class="swatch-hex" style="color: var(--gray-10)">#393939</span></div>
+    <div class="swatch" style="background: var(--gray-70)"><span class="swatch-label" style="color: var(--gray-10)">Gray 70</span><span class="swatch-hex" style="color: var(--gray-10)">#525252</span></div>
+    <div class="swatch" style="background: var(--gray-60)"><span class="swatch-label" style="color: var(--white)">Gray 60</span><span class="swatch-hex" style="color: var(--white)">#6f6f6f</span></div>
+    <div class="swatch" style="background: var(--gray-50)"><span class="swatch-label" style="color: var(--white)">Gray 50</span><span class="swatch-hex" style="color: var(--white)">#8d8d8d</span></div>
+    <div class="swatch" style="background: var(--gray-40)"><span class="swatch-label" style="color: var(--gray-100)">Gray 40</span><span class="swatch-hex" style="color: var(--gray-100)">#a8a8a8</span></div>
+    <div class="swatch" style="background: var(--gray-30)"><span class="swatch-label" style="color: var(--gray-100)">Gray 30</span><span class="swatch-hex" style="color: var(--gray-100)">#c6c6c6</span></div>
+    <div class="swatch" style="background: var(--gray-20)"><span class="swatch-label" style="color: var(--gray-100)">Gray 20</span><span class="swatch-hex" style="color: var(--gray-100)">#e0e0e0</span></div>
+    <div class="swatch" style="background: var(--gray-10)"><span class="swatch-label" style="color: var(--gray-100)">Gray 10</span><span class="swatch-hex" style="color: var(--gray-100)">#f4f4f4</span></div>
+    <div class="swatch" style="background: var(--gray-10-hover)"><span class="swatch-label" style="color: var(--gray-100)">G10 hover</span><span class="swatch-hex" style="color: var(--gray-100)">#e8e8e8</span></div>
+    <div class="swatch" style="background: var(--white); outline: 1px solid var(--gray-20);"><span class="swatch-label" style="color: var(--gray-100)">White</span><span class="swatch-hex" style="color: var(--gray-100)">#ffffff</span></div>
+  </div>
+
+  <div class="layering">
+    <div style="background: var(--gray-100);">
+      <div class="layer-section-label" style="color: var(--gray-30);">DARK THEME LAYERING</div>
+      <div class="layer-row" style="background: var(--gray-100); border: 1px solid var(--gray-80);">
+        <span class="layer-text" style="color: var(--gray-30);">Background #161616</span>
+      </div>
+      <div class="layer-row" style="background: var(--gray-90);">
+        <span class="layer-text" style="color: var(--gray-30);">Layer 01 #262626</span>
+      </div>
+      <div class="layer-row" style="background: var(--gray-80);">
+        <span class="layer-text" style="color: var(--gray-30);">Layer 02 #393939</span>
+      </div>
+    </div>
+    <div style="background: var(--white); outline: 1px solid var(--gray-20);">
+      <div class="layer-section-label" style="color: var(--eu-text-secondary);">LIGHT THEME LAYERING</div>
+      <div class="layer-row" style="background: var(--white); border: 1px solid var(--gray-20);">
+        <span class="layer-text" style="color: var(--eu-text-secondary);">Background #ffffff</span>
+      </div>
+      <div class="layer-row" style="background: var(--gray-10);">
+        <span class="layer-text" style="color: var(--eu-text-secondary);">Layer 01 #f4f4f4</span>
+      </div>
+      <div class="layer-row" style="background: var(--gray-20);">
+        <span class="layer-text" style="color: var(--eu-text-secondary);">Layer 02 #e0e0e0</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

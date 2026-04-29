@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Inputs — earthity</title>
+<link rel="stylesheet" href="../earthity-tokens.css">
+<link rel="stylesheet" href="../earthity-components.css">
+<style>
+  body { background: var(--eu-background); padding: var(--spacing-06); font-family: var(--font-sans); }
+  .section { font-size: 11px; font-weight: var(--fw-semibold); color: var(--eu-text-secondary); letter-spacing: 0.32px; margin-bottom: var(--spacing-04); margin-top: var(--spacing-05); }
+  .section:first-child { margin-top: 0; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-01); }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--spacing-01); }
+  .stack { display: flex; flex-direction: column; gap: var(--spacing-04); }
+  .row { display: flex; gap: var(--spacing-07); align-items: flex-start; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+  <div class="section">TEXT INPUT — STATES</div>
+  <div class="grid-2">
+    <div class="eu-field-group">
+      <label class="eu-field-label">Site name</label>
+      <input class="eu-field" placeholder="Enter site name">
+      <div class="eu-field-helper">Default — used as display name in the Outpost network.</div>
+    </div>
+    <div class="eu-field-group">
+      <label class="eu-field-label">Site name</label>
+      <input class="eu-field eu-field--filled" value="Boston Logistics Hub">
+      <div class="eu-field-helper">Filled — 2px Gray 100 bottom border.</div>
+    </div>
+    <div class="eu-field-group">
+      <label class="eu-field-label eu-field-label--focus">Corridor ID</label>
+      <input class="eu-field" value="NE-BOS-04|" style="border-bottom-color: var(--eu-focus);">
+      <div class="eu-field-helper" style="color: var(--blue-60);">Focus — 2px Blue 60 bottom border.</div>
+    </div>
+    <div class="eu-field-group">
+      <label class="eu-field-label eu-field-label--error">Operator ID</label>
+      <input class="eu-field eu-field--error" value="invalid-id">
+      <div class="eu-field-error">▲ ID format not recognized. Use DSP-XXXXX.</div>
+    </div>
+    <div class="eu-field-group">
+      <label class="eu-field-label">Hover</label>
+      <input class="eu-field" placeholder="Hover state" style="background: var(--eu-field-hover);">
+      <div class="eu-field-helper">Hover — background lightens.</div>
+    </div>
+    <div class="eu-field-group">
+      <label class="eu-field-label">Disabled</label>
+      <input class="eu-field" value="Read-only" disabled>
+      <div class="eu-field-helper">Disabled — gray text + not-allowed cursor.</div>
+    </div>
+  </div>
+
+  <div class="section">LARGE INPUT (48px)</div>
+  <div class="eu-field-group">
+    <label class="eu-field-label">Search the network</label>
+    <input class="eu-field eu-field--lg eu-field--filled" placeholder="Search hosts, corridors, operators…">
+  </div>
+
+  <div class="section">SELECT &amp; TEXTAREA</div>
+  <div class="grid-2">
+    <div class="eu-field-group">
+      <label class="eu-field-label">Site type</label>
+      <div class="eu-field-wrap">
+        <select class="eu-field eu-select eu-field--filled">
+          <option>Landing pad</option>
+          <option>Charging station</option>
+          <option>Relay node</option>
+        </select>
+      </div>
+    </div>
+    <div class="eu-field-group">
+      <label class="eu-field-label">Notes</label>
+      <textarea class="eu-textarea">Rooftop access Mon–Fri 06:00–22:00.</textarea>
+    </div>
+  </div>
+
+  <div class="section">CHECKBOX &amp; RADIO</div>
+  <div class="row">
+    <div class="stack">
+      <label class="eu-check">
+        <input type="checkbox">
+        <span class="eu-check__box"><svg width="10" height="8" viewBox="0 0 10 8"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.5" fill="none"/></svg></span>
+        <span class="eu-check__label">Hosts</span>
+      </label>
+      <label class="eu-check">
+        <input type="checkbox" checked>
+        <span class="eu-check__box"><svg width="10" height="8" viewBox="0 0 10 8"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.5" fill="none"/></svg></span>
+        <span class="eu-check__label">Operators</span>
+      </label>
+      <label class="eu-check">
+        <input type="checkbox" disabled>
+        <span class="eu-check__box"></span>
+        <span class="eu-check__label">Disabled</span>
+      </label>
+    </div>
+    <div class="stack">
+      <label class="eu-radio">
+        <input type="radio" name="route">
+        <span class="eu-radio__dot"></span>
+        <span>Standard</span>
+      </label>
+      <label class="eu-radio">
+        <input type="radio" name="route" checked>
+        <span class="eu-radio__dot"></span>
+        <span>Priority</span>
+      </label>
+    </div>
+  </div>
+</body>
+</html>

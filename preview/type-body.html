@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Body type — earthity</title>
+<link rel="stylesheet" href="../earthity-tokens.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--eu-background); padding: var(--spacing-06); }
+  .row { display: flex; align-items: baseline; gap: var(--spacing-06); padding: 14px 0; border-bottom: 1px solid var(--gray-20); }
+  .meta { font-family: var(--font-sans); font-size: 10px; color: var(--gray-50); letter-spacing: 0.32px; width: 200px; flex-shrink: 0; line-height: 1.5; }
+  .meta strong { display: block; color: var(--eu-text-secondary); font-weight: var(--fw-semibold); margin-bottom: 2px; }
+  .specimen { color: var(--eu-text-primary); max-width: 520px; }
+  /* Link states */
+  .eu-link { color: var(--eu-link-primary); text-decoration: none; transition: color 70ms ease; }
+  .eu-link:hover { color: var(--eu-link-primary-hover); text-decoration: underline; }
+  .eu-link:focus-visible { outline: 2px solid var(--eu-focus); outline-offset: 2px; }
+  .eu-link:visited { color: var(--blue-70); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="meta"><strong>Body Long 01</strong>IBM Plex Sans 400 · 16px · lh 1.50</div>
+    <div class="t-body-long-01 specimen">Outpost connects hosts and operators across a shared autonomous airspace network. Every flight corridor is authorized, logged, and managed in real time.</div>
+  </div>
+  <div class="row">
+    <div class="meta"><strong>Body Long 02</strong>IBM Plex Sans 600 · 16px · lh 1.50</div>
+    <div class="specimen" style="font-family: var(--font-sans); font-size: var(--type-body-long-02-size); font-weight: var(--type-body-long-02-weight); line-height: var(--type-body-long-02-lh);">Operators gain access to the full earthity host network. Hosts earn from every operation run through their site.</div>
+  </div>
+  <div class="row">
+    <div class="meta"><strong>Body Short 01</strong>IBM Plex Sans 400 · 14px · lh 1.29 · ls 0.16px</div>
+    <div class="t-body-short-01 specimen">Your site is registered as a node in the Outpost network. Operators can request access during active flight windows defined by your availability schedule.</div>
+  </div>
+  <div class="row">
+    <div class="meta"><strong>Body Short 02</strong>IBM Plex Sans 600 · 14px · lh 1.29 · ls 0.16px</div>
+    <div class="specimen" style="font-family: var(--font-sans); font-size: var(--type-body-short-02-size); font-weight: var(--type-body-short-02-weight); line-height: var(--type-body-short-02-lh); letter-spacing: var(--type-body-short-02-ls);">Flight window active · 3 operators connected</div>
+  </div>
+  <div class="row">
+    <div class="meta"><strong>Caption 01</strong>IBM Plex Sans 400 · 12px · lh 1.33 · ls 0.32px</div>
+    <div class="t-caption-01" style="color: var(--eu-text-secondary);">Last synced 2 minutes ago · Site ID: OPS-0041-NE</div>
+  </div>
+  <div class="row">
+    <div class="meta"><strong>Label / UI</strong>IBM Plex Sans 600 · 12px · lh 1.33 · ls 0.32px</div>
+    <div style="font-family: var(--font-sans); font-size: var(--type-caption-01-size); font-weight: var(--fw-semibold); line-height: var(--type-caption-01-lh); letter-spacing: var(--type-caption-01-ls); color: var(--eu-text-secondary);">OPERATOR STATUS · FLIGHT CORRIDOR · HOST NETWORK</div>
+  </div>
+  <div class="row">
+    <div class="meta"><strong>Link</strong>IBM Plex Sans 400 · 14px · default / hover / visited / focus</div>
+    <div class="t-body-short-01">
+      <a href="#" class="eu-link">Default link</a> &nbsp;
+      <a href="#" class="eu-link" style="color: var(--eu-link-primary-hover); text-decoration: underline;">Hover</a> &nbsp;
+      <a href="#" class="eu-link" style="color: var(--blue-70);">Visited</a> &nbsp;
+      <a href="#" class="eu-link" style="outline: 2px solid var(--eu-focus); outline-offset: 2px;">Focus →</a>
+    </div>
+  </div>
+</body>
+</html>

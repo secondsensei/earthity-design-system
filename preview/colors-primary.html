@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Primary color — earthity</title>
+<link rel="stylesheet" href="../earthity-tokens.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); background: var(--eu-background); padding: var(--spacing-06); }
+  .row { display: flex; gap: var(--spacing-01); margin-bottom: var(--spacing-01); }
+  .swatch { flex: 1; height: 80px; display: flex; flex-direction: column; justify-content: flex-end; padding: var(--spacing-03); }
+  .swatch-label { font-size: 11px; font-weight: var(--fw-semibold); letter-spacing: 0.32px; }
+  .swatch-hex { font-size: 10px; letter-spacing: 0.16px; opacity: 0.7; margin-top: var(--spacing-01); }
+  .section-label { font-size: 11px; font-weight: var(--fw-semibold); color: var(--eu-text-secondary); letter-spacing: 0.32px; margin-bottom: var(--spacing-03); margin-top: var(--spacing-05); }
+  .section-label:first-child { margin-top: 0; }
+  .accent-row { display: flex; gap: var(--spacing-01); margin-bottom: var(--spacing-01); }
+  .accent-swatch { height: 60px; display: flex; flex-direction: column; justify-content: flex-end; padding: var(--spacing-03); flex: 1; }
+</style>
+</head>
+<body>
+  <div class="section-label">PRIMARY ACCENT — BLUE SCALE</div>
+  <div class="row">
+    <div class="swatch" style="background: var(--blue-10)"><span class="swatch-label" style="color: var(--gray-100)">Blue 10</span><span class="swatch-hex" style="color: var(--gray-100)">#edf5ff</span></div>
+    <div class="swatch" style="background: var(--blue-20)"><span class="swatch-label" style="color: var(--gray-100)">Blue 20</span><span class="swatch-hex" style="color: var(--gray-100)">#d0e2ff</span></div>
+    <div class="swatch" style="background: var(--blue-30)"><span class="swatch-label" style="color: var(--gray-100)">Blue 30</span><span class="swatch-hex" style="color: var(--gray-100)">#a6c8ff</span></div>
+    <div class="swatch" style="background: var(--blue-40)"><span class="swatch-label" style="color: var(--gray-100)">Blue 40</span><span class="swatch-hex" style="color: var(--gray-100)">#78a9ff</span></div>
+    <div class="swatch" style="background: var(--blue-50)"><span class="swatch-label" style="color: var(--white)">Blue 50</span><span class="swatch-hex" style="color: var(--white)">#4589ff</span></div>
+    <div class="swatch" style="background: var(--blue-60); outline: 3px solid var(--gray-100); outline-offset: -3px;"><span class="swatch-label" style="color: var(--white)">Blue 60 ★</span><span class="swatch-hex" style="color: var(--white)">#0f62fe</span></div>
+    <div class="swatch" style="background: var(--blue-70)"><span class="swatch-label" style="color: var(--white)">Blue 70</span><span class="swatch-hex" style="color: var(--white)">#0043ce</span></div>
+    <div class="swatch" style="background: var(--blue-80)"><span class="swatch-label" style="color: var(--white)">Blue 80</span><span class="swatch-hex" style="color: var(--white)">#002d9c</span></div>
+    <div class="swatch" style="background: var(--blue-90)"><span class="swatch-label" style="color: var(--white)">Blue 90</span><span class="swatch-hex" style="color: var(--white)">#001d6c</span></div>
+    <div class="swatch" style="background: var(--blue-100)"><span class="swatch-label" style="color: var(--white)">Blue 100</span><span class="swatch-hex" style="color: var(--white)">#001141</span></div>
+  </div>
+
+  <div class="section-label" style="margin-top: var(--spacing-05)">INTERACTIVE STATES</div>
+  <div class="accent-row">
+    <div class="accent-swatch" style="background: var(--blue-60)"><span class="swatch-label" style="color: var(--white); font-size: 10px">Default --blue-60</span></div>
+    <div class="accent-swatch" style="background: var(--blue-60-hover)"><span class="swatch-label" style="color: var(--white); font-size: 10px">Hover --blue-60-hover</span></div>
+    <div class="accent-swatch" style="background: var(--blue-80)"><span class="swatch-label" style="color: var(--white); font-size: 10px">Active --blue-80</span></div>
+    <div class="accent-swatch" style="background: var(--blue-70)"><span class="swatch-label" style="color: var(--white); font-size: 10px">Link hover --blue-70</span></div>
+    <div class="accent-swatch" style="background: var(--blue-10)"><span class="swatch-label" style="color: var(--blue-60); font-size: 10px">Selected bg --blue-10</span></div>
+  </div>
+</body>
+</html>

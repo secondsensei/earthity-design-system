@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Overlays — earthity</title>
+<link rel="stylesheet" href="../earthity-tokens.css">
+<link rel="stylesheet" href="../earthity-components.css">
+<style>
+  body { background: var(--eu-background); padding: var(--spacing-06); font-family: var(--font-sans); }
+  .section { font-size: 11px; font-weight: var(--fw-semibold); color: var(--eu-text-secondary); letter-spacing: 0.32px; margin-bottom: var(--spacing-04); margin-top: var(--spacing-05); text-transform: uppercase; }
+  .section:first-child { margin-top: 0; }
+  .row { display: flex; gap: var(--spacing-04); align-items: flex-start; flex-wrap: wrap; }
+  .demo-frame { background: var(--gray-10); padding: var(--spacing-05); position: relative; min-height: 200px; max-width: 720px; }
+  .note { font-size: 12px; color: var(--gray-50); letter-spacing: 0.16px; max-width: 560px; line-height: 1.5; margin-top: var(--spacing-02); }
+</style>
+</head>
+<body>
+  <div class="section">MODAL — &lt;dialog&gt; (native)</div>
+  <p class="note">Native <code style="font-family: var(--font-mono);">&lt;dialog&gt;</code> handles focus trap, Esc-to-close, and scrim overlay (<code style="font-family: var(--font-mono);">::backdrop</code>). No JS framework needed.</p>
+  <div class="row" style="margin-top: var(--spacing-04);">
+    <button class="eu-btn eu-btn--primary eu-btn--symmetric" onclick="document.getElementById('demo-modal').showModal()">Open modal</button>
+  </div>
+  <dialog id="demo-modal" class="eu-modal">
+    <div class="eu-modal__header">
+      <span class="eu-modal__title">Confirm site registration</span>
+      <button class="eu-modal__close" onclick="document.getElementById('demo-modal').close()" aria-label="Close">✕</button>
+    </div>
+    <div class="eu-modal__body">
+      Boston Logistics Hub will be registered as an active node in the Outpost network. Operators will be able to request flight windows starting tomorrow at 06:00 EST.
+    </div>
+    <div class="eu-modal__actions">
+      <button class="eu-btn eu-btn--ghost eu-btn--symmetric" onclick="document.getElementById('demo-modal').close()">Cancel</button>
+      <button class="eu-btn eu-btn--primary eu-btn--symmetric" onclick="document.getElementById('demo-modal').close()">Register site</button>
+    </div>
+  </dialog>
+
+  <div class="section">DETAILS / DISCLOSURE — &lt;details&gt; (native)</div>
+  <p class="note">Native expand/collapse. Add <code style="font-family: var(--font-mono);">open</code> attribute to default-open.</p>
+  <div style="max-width: 640px; margin-top: var(--spacing-04);">
+    <details class="eu-details" open>
+      <summary>How does corridor authorization work?</summary>
+      <div class="eu-details__body">A corridor is a pre-approved flight path between two sites. Operators request access during a host's availability window. Authorization is logged in real time and cleared at the end of each window.</div>
+    </details>
+    <details class="eu-details">
+      <summary>What does host onboarding involve?</summary>
+      <div class="eu-details__body">A site survey, RF clearance check, and integration with your existing physical access controls. Most sites are live within 7 business days.</div>
+    </details>
+    <details class="eu-details">
+      <summary>Who pays for site infrastructure?</summary>
+      <div class="eu-details__body">earthity provides the relay node hardware free of charge for verified hosts. You retain ownership of the physical site; we operate the autonomy stack.</div>
+    </details>
+  </div>
+
+  <div class="section">COMBOBOX — &lt;input list&gt; (native)</div>
+  <p class="note">Native datalist suggestion behavior. Browsers handle keyboard nav and filtering. Suitable for simple text-completion. Use a spec-only custom combobox for rich rendering.</p>
+  <div class="eu-field-group" style="max-width: 320px; margin-top: var(--spacing-04);">
+    <label class="eu-field-label">Select a corridor</label>
+    <input class="eu-field eu-field--filled" list="corridors" placeholder="Type to search…">
+    <datalist id="corridors">
+      <option value="NE-BOS-04 — Boston Metro">
+      <option value="NE-HFD-02 — Hartford Loop">
+      <option value="NE-PRV-01 — Providence Line">
+      <option value="NE-WOR-03 — Worcester Hub">
+    </datalist>
+  </div>
+
+  <div class="section">POPOVER — popover attribute (native, modern browsers)</div>
+  <p class="note">Native popover via <code style="font-family: var(--font-mono);">popovertarget</code>. Auto-positioned, click-outside dismissal, no JS. Chrome 114+, Firefox 125+, Safari 17+.</p>
+  <div class="row" style="margin-top: var(--spacing-04);">
+    <button class="eu-btn eu-btn--tertiary eu-btn--symmetric" popovertarget="demo-popover">More info</button>
+    <div id="demo-popover" popover class="eu-popover">
+      Corridor authorization typically takes 30 seconds during peak hours. Operators are notified via email + the operator app once confirmed.
+    </div>
+  </div>
+
+  <div class="section">SPEC SHEETS — patterns the system does NOT ship</div>
+  <p class="note">These have no native HTML primitive that satisfies the design system's behavior expectations. Consumers wire the behavior using a framework primitive (Radix, Headless UI, native framework tabs). The system specifies <em>what</em> they should do, not <em>how</em>.</p>
+
+  <h3 style="margin-top: var(--spacing-05); font-size: 14px; font-weight: var(--fw-semibold); color: var(--eu-text-primary); margin-bottom: var(--spacing-03);">Tabs (visual ships in components-nav.html; behavior is consumer-wired)</h3>
+  <div class="eu-spec">
+    <div class="eu-spec__title">Behavior contract</div>
+    <div class="eu-spec__row"><span class="eu-spec__key">role</span><span class="eu-spec__value">Tab list: <code>role="tablist"</code>; tab: <code>role="tab"</code>; panel: <code>role="tabpanel"</code></span></div>
+    <div class="eu-spec__row"><span class="eu-spec__key">selection</span><span class="eu-spec__value">Active tab: <code>aria-selected="true"</code> (other tabs <code>"false"</code>)</span></div>
+    <div class="eu-spec__row"><span class="eu-spec__key">link</span><span class="eu-spec__value">Each tab <code>aria-controls="panel-id"</code>; each panel <code>aria-labelledby="tab-id"</code></span></div>
+    <div class="eu-spec__row"><span class="eu-spec__key">tab order</span><span class="eu-spec__value">Tab key reaches the active tab; Arrow keys move between tabs (no Tab navigation between them).</span></div>
+    <div class="eu-spec__row"><span class="eu-spec__key">keyboard</span><span class="eu-spec__value">←/→ — previous/next tab; Home — first tab; End — last tab; Enter/Space — activate (or auto-activate on focus)</span></div>
+    <div class="eu-spec__row"><span class="eu-spec__key">visual</span><span class="eu-spec__value">Use <code>.eu-tabs</code> + <code>.eu-tab</code> from earthity-components.css; toggle <code>aria-selected</code> attribute</span></div>
+  </div>
+
+  <h3 style="margin-top: var(--spacing-05); font-size: 14px; font-weight: var(--fw-semibold); color: var(--eu-text-primary); margin-bottom: var(--spacing-03);">Rich dropdown (selectable list with custom content per option)</h3>
+  <div class="eu-spec">
+    <div class="eu-spec__title">Behavior contract</div>
+    <div class="eu-spec__row"><span class="eu-spec__key">role</span><span class="eu-spec__value">Trigger: <code>aria-haspopup="listbox"</code>, <code>aria-expanded</code>; menu: <code>role="listbox"</code>; item: <code>role="option"</code></span></div>
+    <div class="eu-spec__row"><span class="eu-spec__key">opening</span><span class="eu-spec__value">Click, Enter, Space, ArrowDown all open. Focus first option (or selected option if any).</span></div>
+    <div class="eu-spec__row"><span class="eu-spec__key">keyboard</span><span class="eu-spec__value">↑/↓ — move focus between options; Home/End — first/last; Enter — select; Esc — close, restore focus to trigger; Tab — close, move on</span></div>
+    <div class="eu-spec__row"><span class="eu-spec__key">visual</span><span class="eu-spec__value">Trigger: <code>.eu-field eu-select</code>; menu: <code>.eu-popover</code> with options styled as <code>.eu-sidebar__item</code></span></div>
+    <div class="eu-spec__row"><span class="eu-spec__key">positioning</span><span class="eu-spec__value">Below trigger by default; flip up if not enough room. Match trigger width.</span></div>
+  </div>
+
+  <h3 style="margin-top: var(--spacing-05); font-size: 14px; font-weight: var(--fw-semibold); color: var(--eu-text-primary); margin-bottom: var(--spacing-03);">Custom combobox (typeahead with rich rendering)</h3>
+  <div class="eu-spec">
+    <div class="eu-spec__title">Behavior contract</div>
+    <div class="eu-spec__row"><span class="eu-spec__key">role</span><span class="eu-spec__value">Wrapper: <code>role="combobox"</code>; input: <code>aria-autocomplete="list"</code>, <code>aria-expanded</code>, <code>aria-controls="listbox-id"</code>; menu: <code>role="listbox"</code></span></div>
+    <div class="eu-spec__row"><span class="eu-spec__key">filtering</span><span class="eu-spec__value">Filter on input change. Highlight matched substring. Show "No matches" if empty.</span></div>
+    <div class="eu-spec__row"><span class="eu-spec__key">keyboard</span><span class="eu-spec__value">↓ opens menu and moves focus to first option; Enter — select; Esc — close; Tab — close + commit value</span></div>
+    <div class="eu-spec__row"><span class="eu-spec__key">visual</span><span class="eu-spec__value">Input: <code>.eu-field</code>; menu: <code>.eu-popover</code>; options: same styling as rich dropdown</span></div>
+  </div>
+</body>
+</html>

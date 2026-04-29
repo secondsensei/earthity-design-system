@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Forms — earthity</title>
+<link rel="stylesheet" href="../earthity-tokens.css">
+<link rel="stylesheet" href="../earthity-components.css">
+<style>
+  body { background: var(--eu-background); padding: var(--spacing-06); font-family: var(--font-sans); }
+  .section { font-size: 11px; font-weight: var(--fw-semibold); color: var(--eu-text-secondary); letter-spacing: 0.32px; margin-bottom: var(--spacing-04); margin-top: var(--spacing-05); text-transform: uppercase; }
+  .section:first-child { margin-top: 0; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-05); }
+  .row { display: flex; align-items: center; gap: var(--spacing-06); flex-wrap: wrap; }
+  .step-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--spacing-05); padding: var(--spacing-05); background: var(--gray-10); margin-bottom: var(--spacing-04); }
+  .form-card { background: var(--white); padding: var(--spacing-06); max-width: 640px; outline: 1px solid var(--gray-20); }
+  .form-actions { display: flex; gap: var(--spacing-01); justify-content: flex-end; margin-top: var(--spacing-05); border-top: 1px solid var(--gray-20); padding-top: var(--spacing-04); }
+</style>
+</head>
+<body>
+  <div class="section">TOGGLE</div>
+  <div class="row">
+    <label class="eu-toggle">
+      <input type="checkbox">
+      <span class="eu-toggle__track"></span>
+      <span>Auto-accept operator requests</span>
+    </label>
+    <label class="eu-toggle">
+      <input type="checkbox" checked>
+      <span class="eu-toggle__track"></span>
+      <span>Notify on flight window changes</span>
+    </label>
+    <label class="eu-toggle">
+      <input type="checkbox" disabled>
+      <span class="eu-toggle__track" style="opacity: 0.5;"></span>
+      <span style="color: var(--gray-50);">Disabled</span>
+    </label>
+  </div>
+
+  <div class="section">SEARCH</div>
+  <div class="eu-search" style="max-width: 480px;">
+    <svg class="eu-search__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5"/><line x1="11" y1="11" x2="14" y2="14"/></svg>
+    <input class="eu-field eu-field--filled" placeholder="Search hosts, corridors, operators…">
+  </div>
+
+  <div class="section">FILE UPLOAD</div>
+  <div>
+    <label class="eu-file">
+      <input type="file" id="upload-demo">
+      <span class="eu-btn eu-btn--tertiary eu-btn--symmetric">Choose file</span>
+      <span style="color: var(--eu-text-secondary); font-size: 13px;">No file selected</span>
+    </label>
+    <div class="eu-file__list">
+      <div class="eu-file__item">
+        <svg class="eu-icon eu-icon--16" viewBox="0 0 16 16"><path d="M2 2h8l4 4v8H2z M10 2v4h4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span class="eu-file__name">site-map.pdf</span>
+        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--gray-50);">2.4 MB</span>
+        <button class="eu-file__remove" aria-label="Remove file">✕</button>
+      </div>
+      <div class="eu-file__item">
+        <svg class="eu-icon eu-icon--16" viewBox="0 0 16 16"><path d="M2 2h8l4 4v8H2z M10 2v4h4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span class="eu-file__name">insurance-cert.pdf</span>
+        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--gray-50);">478 KB</span>
+        <button class="eu-file__remove" aria-label="Remove file">✕</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">MULTI-STEP FORM ROW LAYOUT</div>
+  <div class="form-card">
+    <div class="step-row">
+      <div class="eu-stat eu-stat--bare">
+        <span class="eu-stat__label">STEP 1 / 3</span>
+        <span style="font-size: 16px; font-weight: var(--fw-semibold); color: var(--eu-text-primary);">Site identity</span>
+      </div>
+      <div class="eu-stat eu-stat--bare">
+        <span class="eu-stat__label" style="color: var(--blue-60);">STEP 2 / 3 — CURRENT</span>
+        <span style="font-size: 16px; font-weight: var(--fw-semibold); color: var(--eu-text-primary);">Operating window</span>
+      </div>
+      <div class="eu-stat eu-stat--bare">
+        <span class="eu-stat__label">STEP 3 / 3</span>
+        <span style="font-size: 16px; font-weight: var(--fw-semibold); color: var(--gray-50);">Verification</span>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="eu-field-group">
+        <label class="eu-field-label">Window opens</label>
+        <input class="eu-field eu-field--filled" type="time" value="06:00">
+      </div>
+      <div class="eu-field-group">
+        <label class="eu-field-label">Window closes</label>
+        <input class="eu-field eu-field--filled" type="time" value="22:00">
+      </div>
+    </div>
+
+    <div class="eu-field-group" style="margin-top: var(--spacing-04);">
+      <label class="eu-field-label">Days available</label>
+      <div style="display: flex; gap: var(--spacing-02); flex-wrap: wrap;">
+        <button class="eu-tag eu-tag--interactive eu-tag--selected" style="border: none;">Mon</button>
+        <button class="eu-tag eu-tag--interactive eu-tag--selected" style="border: none;">Tue</button>
+        <button class="eu-tag eu-tag--interactive eu-tag--selected" style="border: none;">Wed</button>
+        <button class="eu-tag eu-tag--interactive eu-tag--selected" style="border: none;">Thu</button>
+        <button class="eu-tag eu-tag--interactive eu-tag--selected" style="border: none;">Fri</button>
+        <button class="eu-tag eu-tag--interactive" style="border: none;">Sat</button>
+        <button class="eu-tag eu-tag--interactive" style="border: none;">Sun</button>
+      </div>
+      <div class="eu-field-helper">Click a day to toggle.</div>
+    </div>
+
+    <div class="eu-field-group" style="margin-top: var(--spacing-04);">
+      <label class="eu-field-label">Notes for operators</label>
+      <textarea class="eu-textarea">Rooftop access via service elevator. Notify security 30 min before arrival.</textarea>
+    </div>
+
+    <div class="form-actions">
+      <button class="eu-btn eu-btn--ghost eu-btn--symmetric">← Back</button>
+      <button class="eu-btn eu-btn--primary eu-btn--symmetric">Continue →</button>
+    </div>
+  </div>
+</body>
+</html>

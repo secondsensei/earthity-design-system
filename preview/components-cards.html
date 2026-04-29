@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cards — earthity</title>
+<link rel="stylesheet" href="../earthity-tokens.css">
+<link rel="stylesheet" href="../earthity-components.css">
+<style>
+  body { background: var(--gray-10); padding: var(--spacing-06); font-family: var(--font-sans); }
+  .section { font-size: 11px; font-weight: var(--fw-semibold); color: var(--eu-text-secondary); letter-spacing: 0.32px; margin-bottom: var(--spacing-04); margin-top: var(--spacing-05); }
+  .section:first-child { margin-top: 0; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-01); }
+  .grid--dark { background: var(--gray-100); padding: var(--spacing-01); }
+</style>
+</head>
+<body>
+  <div class="section">TILES — LIGHT (white surface)</div>
+  <div class="grid">
+    <a href="#" class="eu-tile eu-tile--interactive">
+      <div class="eu-tile__eyebrow">HOST NETWORK</div>
+      <div class="eu-tile__title">Open your site to the network.</div>
+      <div class="eu-tile__body">Register a landing pad, charging station, or relay node and start earning from every operation.</div>
+      <div class="eu-tile__arrow">→</div>
+    </a>
+    <a href="#" class="eu-tile eu-tile--interactive">
+      <div class="eu-tile__eyebrow">OPERATORS</div>
+      <div class="eu-tile__title">Access 247 active host sites.</div>
+      <div class="eu-tile__body">Plan routes, request corridor access, and manage your fleet across the Outpost network.</div>
+      <div class="eu-tile__arrow">→</div>
+    </a>
+    <a href="#" class="eu-tile eu-tile--layer-01 eu-tile--interactive">
+      <div class="eu-tile__eyebrow">LAYER 01 CARD</div>
+      <div class="eu-tile__title">Gray 10 surface.</div>
+      <div class="eu-tile__body">Elevated over a white background. No shadow — color layering provides depth.</div>
+      <div class="eu-tile__arrow">→</div>
+    </a>
+  </div>
+
+  <div class="section">TILES — DARK SURFACE</div>
+  <div class="grid grid--dark">
+    <a href="#" class="eu-tile eu-tile--dark eu-tile--interactive">
+      <div class="eu-tile__eyebrow">PROGRAM STATUS</div>
+      <div class="eu-tile__title">Northeast corridor active</div>
+      <div style="font-family: var(--font-mono); font-size: 12px; color: var(--blue-40); margin-top: var(--spacing-04); letter-spacing: 0.16px;">3 operators · 14 flights</div>
+    </a>
+    <a href="#" class="eu-tile eu-tile--blue eu-tile--interactive">
+      <div class="eu-tile__eyebrow">CTA CARD</div>
+      <div class="eu-tile__title">Start your drone program today.</div>
+      <div style="font-size: var(--type-body-short-01-size); color: var(--blue-30); margin-top: var(--spacing-03);">Drone Program Integration →</div>
+    </a>
+    <a href="#" class="eu-tile eu-tile--dark eu-tile--interactive">
+      <div class="eu-tile__eyebrow">SITE ID</div>
+      <div style="font-family: var(--font-mono); font-size: 28px; color: var(--gray-10); margin: var(--spacing-03) 0;">OPS-0041</div>
+      <div style="font-size: var(--type-caption-01-size); color: var(--gray-60); letter-spacing: 0.32px;">Boston Logistics Hub<br>42.3601° N · 71.0589° W</div>
+    </a>
+  </div>
+
+  <div class="section">FOCUSED TILE (keyboard nav)</div>
+  <div class="grid">
+    <a href="#" class="eu-tile eu-tile--interactive" style="outline: 2px solid var(--eu-focus); outline-offset: 2px;">
+      <div class="eu-tile__eyebrow">FOCUS STATE</div>
+      <div class="eu-tile__title">Outline + offset.</div>
+      <div class="eu-tile__body">Applied via :focus-visible on .eu-tile--interactive.</div>
+      <div class="eu-tile__arrow">→</div>
+    </a>
+  </div>
+
+  <div class="section">DATA ROW / LIST ITEM</div>
+  <div style="background: var(--white);">
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 80px; padding: 12px var(--spacing-05); border-bottom: 1px solid var(--gray-20); background: var(--gray-10);">
+      <div style="font-size: 11px; font-weight: var(--fw-semibold); color: var(--eu-text-secondary); letter-spacing: 0.32px;">SITE NAME</div>
+      <div style="font-size: 11px; font-weight: var(--fw-semibold); color: var(--eu-text-secondary); letter-spacing: 0.32px;">CORRIDOR</div>
+      <div style="font-size: 11px; font-weight: var(--fw-semibold); color: var(--eu-text-secondary); letter-spacing: 0.32px;">STATUS</div>
+      <div style="font-size: 11px; font-weight: var(--fw-semibold); color: var(--eu-text-secondary); letter-spacing: 0.32px;">FLIGHTS</div>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 80px; padding: 12px var(--spacing-05); border-bottom: 1px solid var(--gray-20);">
+      <div style="font-size: 14px; color: var(--eu-text-primary); letter-spacing: 0.16px;">Boston Logistics Hub</div>
+      <div style="font-family: var(--font-mono); font-size: 13px; color: var(--eu-text-secondary);">NE-BOS-04</div>
+      <div><span class="eu-tag eu-tag--success">Active</span></div>
+      <div style="font-family: var(--font-mono); font-size: 13px; color: var(--eu-text-primary);">1,402</div>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 80px; padding: 12px var(--spacing-05); border-bottom: 1px solid var(--gray-20); background: var(--blue-10);">
+      <div style="font-size: 14px; color: var(--eu-text-primary); letter-spacing: 0.16px;">Hartford Landing</div>
+      <div style="font-family: var(--font-mono); font-size: 13px; color: var(--eu-text-secondary);">NE-HFD-02</div>
+      <div><span class="eu-tag eu-tag--success">Active</span></div>
+      <div style="font-family: var(--font-mono); font-size: 13px; color: var(--eu-text-primary);">847</div>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 80px; padding: 12px var(--spacing-05);">
+      <div style="font-size: 14px; color: var(--gray-50); letter-spacing: 0.16px;">Providence Relay</div>
+      <div style="font-family: var(--font-mono); font-size: 13px; color: var(--gray-50);">NE-PRV-01</div>
+      <div><span class="eu-tag eu-tag--neutral">Inactive</span></div>
+      <div style="font-family: var(--font-mono); font-size: 13px; color: var(--gray-50);">—</div>
+    </div>
+  </div>
+</body>
+</html>

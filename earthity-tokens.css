@@ -1,0 +1,294 @@
+/* ============================================================
+   earthity Design System — Tokens
+   Colors, typography, spacing, radii, motion, layout
+   Visual lineage: IBM Carbon (see README)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700&family=IBM+Plex+Sans:wght@300;400;600&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Serif:wght@300;400&display=swap');
+
+/* ============================================================
+   COLOR TOKENS — Base Scale
+   ============================================================ */
+
+:root {
+  /* Blue Scale */
+  --blue-10: #edf5ff;
+  --blue-20: #d0e2ff;
+  --blue-30: #a6c8ff;
+  --blue-40: #78a9ff;
+  --blue-50: #4589ff;
+  --blue-60: #0f62fe;   /* Primary interactive — the one blue */
+  --blue-60-hover: #0353e9;
+  --blue-70: #0043ce;
+  --blue-80: #002d9c;
+  --blue-90: #001d6c;
+  --blue-100: #001141;
+
+  /* Gray Scale */
+  --gray-100: #161616;
+  --gray-90:  #262626;
+  --gray-80:  #393939;
+  --gray-70:  #525252;
+  --gray-60:  #6f6f6f;
+  --gray-50:  #8d8d8d;
+  --gray-40:  #a8a8a8;
+  --gray-30:  #c6c6c6;
+  --gray-20:  #e0e0e0;
+  --gray-10:  #f4f4f4;
+  --gray-10-hover: #e8e8e8;
+  --white:    #ffffff;
+
+  /* Red Scale */
+  --red-60:   #da1e28;
+  --red-70:   #b81921;
+  --red-10:   #fff1f1;
+
+  /* Green Scale */
+  --green-50: #24a148;
+  --green-10: #defbe6;
+
+  /* Yellow */
+  --yellow-30: #f1c21b;
+  --yellow-10: #fcf4d6;
+
+  /* ============================================================
+     SEMANTIC COLOR TOKENS
+     ============================================================ */
+
+  /* Backgrounds */
+  --eu-background:         var(--white);
+  --eu-background-hover:   var(--gray-10-hover);
+  --eu-layer-01:           var(--gray-10);
+  --eu-layer-02:           var(--gray-20);
+  --eu-layer-hover-01:     var(--gray-10-hover);
+
+  /* Text */
+  --eu-text-primary:       var(--gray-100);
+  --eu-text-secondary:     var(--gray-70);
+  --eu-text-placeholder:   var(--gray-60);
+  --eu-text-disabled:      var(--gray-50);
+  --eu-text-on-color:      var(--white);
+  --eu-text-inverse:       var(--white);
+
+  /* Interactive */
+  --eu-link-primary:       var(--blue-60);
+  --eu-link-primary-hover: var(--blue-70);
+  --eu-button-primary:     var(--blue-60);
+  --eu-button-primary-hover: var(--blue-60-hover);
+  --eu-button-primary-active: var(--blue-80);
+  --eu-button-secondary:   var(--gray-80);
+  --eu-button-tertiary:    transparent;
+  --eu-focus:              var(--blue-60);
+  --eu-focus-inset:        var(--white);
+
+  /* Borders */
+  --eu-border-subtle:      var(--gray-30);
+  --eu-border-strong:      var(--gray-50);
+  --eu-border-interactive: var(--blue-60);
+
+  /* Fields */
+  --eu-field:              var(--gray-10);
+  --eu-field-hover:        var(--gray-10-hover);
+
+  /* Support / Status */
+  --eu-support-error:      var(--red-60);
+  --eu-support-success:    var(--green-50);
+  --eu-support-warning:    var(--yellow-30);
+  --eu-support-info:       var(--blue-60);
+
+  /* Surfaces */
+  --eu-overlay:            rgba(22, 22, 22, 0.5);
+  --eu-shadow:             0 2px 6px rgba(0, 0, 0, 0.3);
+
+  /* ============================================================
+     TYPOGRAPHY TOKENS
+     ============================================================ */
+
+  /* Font Families */
+  --font-brand:   'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  --font-sans:    'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono:    'IBM Plex Mono', 'Menlo', 'Courier New', monospace;
+  --font-serif:   'IBM Plex Serif', Georgia, serif;
+
+  /* Font Weights */
+  --fw-light:     300;
+  --fw-regular:   400;
+  --fw-semibold:  600;
+  --fw-bold:      700;   /* Manrope wordmark only */
+
+  /* Type Scale — Display (Manrope / IBM Plex Sans Light) */
+  --type-display-01-size:    3.75rem;   /* 60px */
+  --type-display-01-weight:  var(--fw-light);
+  --type-display-01-lh:      1.17;
+  --type-display-01-ls:      0;
+
+  --type-display-02-size:    3.00rem;   /* 48px */
+  --type-display-02-weight:  var(--fw-light);
+  --type-display-02-lh:      1.17;
+  --type-display-02-ls:      0;
+
+  --type-heading-01-size:    2.625rem;  /* 42px */
+  --type-heading-01-weight:  var(--fw-light);
+  --type-heading-01-lh:      1.19;
+  --type-heading-01-ls:      0;
+
+  --type-heading-02-size:    2.00rem;   /* 32px */
+  --type-heading-02-weight:  var(--fw-regular);
+  --type-heading-02-lh:      1.25;
+  --type-heading-02-ls:      0;
+
+  --type-heading-03-size:    1.50rem;   /* 24px */
+  --type-heading-03-weight:  var(--fw-regular);
+  --type-heading-03-lh:      1.33;
+  --type-heading-03-ls:      0;
+
+  --type-heading-04-size:    1.25rem;   /* 20px */
+  --type-heading-04-weight:  var(--fw-semibold);
+  --type-heading-04-lh:      1.40;
+  --type-heading-04-ls:      0;
+
+  --type-heading-05-size:    1.25rem;   /* 20px */
+  --type-heading-05-weight:  var(--fw-regular);
+  --type-heading-05-lh:      1.40;
+  --type-heading-05-ls:      0;
+
+  /* Type Scale — Body */
+  --type-body-long-01-size:   1.00rem;  /* 16px */
+  --type-body-long-01-weight: var(--fw-regular);
+  --type-body-long-01-lh:     1.50;
+  --type-body-long-01-ls:     0;
+
+  --type-body-long-02-size:   1.00rem;  /* 16px */
+  --type-body-long-02-weight: var(--fw-semibold);
+  --type-body-long-02-lh:     1.50;
+  --type-body-long-02-ls:     0;
+
+  --type-body-short-01-size:   0.875rem; /* 14px */
+  --type-body-short-01-weight: var(--fw-regular);
+  --type-body-short-01-lh:     1.29;
+  --type-body-short-01-ls:     0.16px;
+
+  --type-body-short-02-size:   0.875rem; /* 14px */
+  --type-body-short-02-weight: var(--fw-semibold);
+  --type-body-short-02-lh:     1.29;
+  --type-body-short-02-ls:     0.16px;
+
+  --type-caption-01-size:    0.75rem;   /* 12px */
+  --type-caption-01-weight:  var(--fw-regular);
+  --type-caption-01-lh:      1.33;
+  --type-caption-01-ls:      0.32px;
+
+  /* Type Scale — Code / Mono */
+  --type-code-01-size:    0.875rem;  /* 14px */
+  --type-code-01-weight:  var(--fw-regular);
+  --type-code-01-lh:      1.43;
+  --type-code-01-ls:      0.16px;
+
+  --type-code-02-size:    1.00rem;   /* 16px */
+  --type-code-02-weight:  var(--fw-regular);
+  --type-code-02-lh:      1.50;
+  --type-code-02-ls:      0;
+
+  --type-mono-display-size:    2.625rem; /* 42px */
+  --type-mono-display-weight:  var(--fw-regular);
+  --type-mono-display-lh:      1.19;
+  --type-mono-display-ls:      0;
+
+  /* ============================================================
+     SPACING SCALE (8px base)
+     ============================================================ */
+
+  --spacing-01:  2px;
+  --spacing-02:  4px;
+  --spacing-03:  8px;
+  --spacing-04:  12px;
+  --spacing-05:  16px;
+  --spacing-06:  24px;
+  --spacing-07:  32px;
+  --spacing-08:  40px;
+  --spacing-09:  48px;
+  --spacing-10:  64px;
+  --spacing-11:  80px;
+  --spacing-12:  96px;
+  --spacing-13:  160px;
+
+  /* ============================================================
+     LAYOUT
+     ============================================================ */
+
+  --grid-max-width:   1584px;
+  --grid-gutter:      32px;
+  --grid-margin:      32px;
+  --grid-margin-sm:   16px;
+
+  /* ============================================================
+     BORDER RADIUS
+     ============================================================ */
+
+  --radius-none:    0px;      /* Buttons, inputs, cards */
+  --radius-pill:    24px;     /* Tags */
+  --radius-circle:  50%;      /* Avatars */
+
+  /* ============================================================
+     COMPONENT DIMENSIONS
+     ============================================================ */
+
+  --button-height-sm:     40px;
+  --button-height-md:     48px;
+  --button-height-lg:     64px;
+  --input-height-sm:      40px;
+  --input-height-md:      48px;
+  --nav-height:           48px;
+}
+
+/* ============================================================
+   DARK THEME OVERRIDES
+   ============================================================ */
+
+[data-theme="dark"], .theme-dark {
+  --eu-background:       var(--gray-100);
+  --eu-layer-01:         var(--gray-90);
+  --eu-layer-02:         var(--gray-80);
+  --eu-text-primary:     var(--gray-10);
+  --eu-text-secondary:   var(--gray-30);
+  --eu-text-placeholder: var(--gray-60);
+  --eu-border-subtle:    var(--gray-80);
+  --eu-field:            var(--gray-80);
+  --eu-link-primary:     var(--blue-40);
+  --eu-link-primary-hover: var(--blue-30);
+  --eu-button-primary:   var(--blue-60);
+  --eu-background-hover: var(--gray-90);
+  --eu-layer-hover-01:   var(--gray-80);
+}
+
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+
+/* Text styles */
+.t-display-01 { font-family: var(--font-brand); font-size: var(--type-display-01-size); font-weight: var(--type-display-01-weight); line-height: var(--type-display-01-lh); letter-spacing: var(--type-display-01-ls); }
+.t-display-02 { font-family: var(--font-brand); font-size: var(--type-display-02-size); font-weight: var(--type-display-02-weight); line-height: var(--type-display-02-lh); letter-spacing: var(--type-display-02-ls); }
+.t-heading-01 { font-family: var(--font-sans); font-size: var(--type-heading-01-size); font-weight: var(--type-heading-01-weight); line-height: var(--type-heading-01-lh); letter-spacing: var(--type-heading-01-ls); }
+.t-heading-02 { font-family: var(--font-sans); font-size: var(--type-heading-02-size); font-weight: var(--type-heading-02-weight); line-height: var(--type-heading-02-lh); }
+.t-heading-03 { font-family: var(--font-sans); font-size: var(--type-heading-03-size); font-weight: var(--type-heading-03-weight); line-height: var(--type-heading-03-lh); }
+.t-heading-04 { font-family: var(--font-sans); font-size: var(--type-heading-04-size); font-weight: var(--type-heading-04-weight); line-height: var(--type-heading-04-lh); }
+.t-body-long-01 { font-family: var(--font-sans); font-size: var(--type-body-long-01-size); font-weight: var(--type-body-long-01-weight); line-height: var(--type-body-long-01-lh); }
+.t-body-short-01 { font-family: var(--font-sans); font-size: var(--type-body-short-01-size); font-weight: var(--type-body-short-01-weight); line-height: var(--type-body-short-01-lh); letter-spacing: var(--type-body-short-01-ls); }
+.t-caption-01 { font-family: var(--font-sans); font-size: var(--type-caption-01-size); font-weight: var(--type-caption-01-weight); line-height: var(--type-caption-01-lh); letter-spacing: var(--type-caption-01-ls); }
+.t-code-01 { font-family: var(--font-mono); font-size: var(--type-code-01-size); font-weight: var(--type-code-01-weight); line-height: var(--type-code-01-lh); letter-spacing: var(--type-code-01-ls); }
+
+/* Color utilities */
+.c-primary   { color: var(--eu-text-primary); }
+.c-secondary { color: var(--eu-text-secondary); }
+.c-blue      { color: var(--blue-60); }
+.c-inverse   { color: var(--white); }
+.bg-base     { background: var(--eu-background); }
+.bg-layer    { background: var(--eu-layer-01); }
+
+/* Spacing utilities */
+.p-05  { padding: var(--spacing-05); }
+.p-06  { padding: var(--spacing-06); }
+.mt-05 { margin-top: var(--spacing-05); }
+.mt-06 { margin-top: var(--spacing-06); }
+.mb-05 { margin-bottom: var(--spacing-05); }
+.mb-06 { margin-bottom: var(--spacing-06); }

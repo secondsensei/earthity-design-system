@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Feedback — earthity</title>
+<link rel="stylesheet" href="../earthity-tokens.css">
+<link rel="stylesheet" href="../earthity-components.css">
+<style>
+  body { background: var(--eu-background); padding: var(--spacing-06); font-family: var(--font-sans); }
+  .section { font-size: 11px; font-weight: var(--fw-semibold); color: var(--eu-text-secondary); letter-spacing: 0.32px; margin-bottom: var(--spacing-04); margin-top: var(--spacing-05); text-transform: uppercase; }
+  .section:first-child { margin-top: 0; }
+  .demo-frame { background: var(--gray-10); padding: var(--spacing-05); }
+  .skeleton-card { background: var(--white); padding: var(--spacing-05); display: flex; flex-direction: column; gap: var(--spacing-03); }
+  .skeleton-row { display: flex; align-items: center; gap: var(--spacing-04); }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-05); }
+  .note { font-size: 12px; color: var(--gray-50); letter-spacing: 0.16px; line-height: 1.5; max-width: 560px; margin-bottom: var(--spacing-04); }
+  .toast-stage { position: relative; min-height: 220px; background: var(--gray-10); padding: var(--spacing-05); }
+  .toast-stage .eu-toast-region { position: absolute; }
+</style>
+</head>
+<body>
+  <div class="section">EMPTY STATE</div>
+  <div class="eu-empty">
+    <svg class="eu-empty__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="16" cy="6" r="3"/><circle cx="6" cy="22" r="3"/><circle cx="26" cy="22" r="3"/>
+      <line x1="16" y1="9" x2="6" y2="19"/><line x1="16" y1="9" x2="26" y2="19"/><line x1="9" y1="22" x2="23" y2="22"/>
+    </svg>
+    <div class="eu-empty__title">No corridors yet</div>
+    <div class="eu-empty__body">Request access to a corridor or open your site to inbound operations to get started.</div>
+    <div style="display: flex; gap: var(--spacing-01);">
+      <button class="eu-btn eu-btn--primary eu-btn--symmetric">Request corridor access</button>
+      <button class="eu-btn eu-btn--ghost eu-btn--symmetric">Browse network</button>
+    </div>
+  </div>
+
+  <div class="section">LOADING SKELETONS</div>
+  <p class="note">Animated placeholder while data is fetching. Match the shape of the eventual content.</p>
+  <div class="grid-2">
+    <div class="skeleton-card" aria-busy="true" aria-live="polite">
+      <span class="eu-skeleton eu-skeleton--text-lg" style="width: 60%;"></span>
+      <span class="eu-skeleton eu-skeleton--text" style="width: 90%;"></span>
+      <span class="eu-skeleton eu-skeleton--text" style="width: 75%;"></span>
+      <span class="eu-skeleton eu-skeleton--text" style="width: 80%;"></span>
+    </div>
+    <div class="skeleton-card" aria-busy="true">
+      <div class="skeleton-row">
+        <span class="eu-skeleton eu-skeleton--circle"></span>
+        <div style="flex: 1;">
+          <span class="eu-skeleton eu-skeleton--text" style="width: 50%;"></span>
+          <span class="eu-skeleton eu-skeleton--text" style="width: 80%;"></span>
+        </div>
+      </div>
+      <span class="eu-skeleton eu-skeleton--block"></span>
+    </div>
+  </div>
+
+  <div class="section">ERROR PAGE / FULL-SURFACE FAILURE</div>
+  <div class="eu-empty" style="background: var(--gray-10);">
+    <svg class="eu-empty__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--red-60);">
+      <path d="M16 4 L28 26 L4 26 Z"/><line x1="16" y1="13" x2="16" y2="20"/><circle cx="16" cy="23.5" r="1.4" fill="currentColor" stroke="none"/>
+    </svg>
+    <div class="eu-empty__title">We couldn't reach the network</div>
+    <div class="eu-empty__body">Check your connection or status.earthity.com. Operator data was last synced 4 minutes ago.</div>
+    <button class="eu-btn eu-btn--primary eu-btn--symmetric">Retry connection</button>
+  </div>
+
+  <div class="section">INLINE NOTIFICATION + DISMISS</div>
+  <p class="note">Use <code style="font-family: var(--font-mono);">role="status"</code> for non-urgent updates (polite). Use <code style="font-family: var(--font-mono);">role="alert"</code> only for time-sensitive errors (assertive). Both announce to screen readers.</p>
+  <div style="display: flex; flex-direction: column; gap: var(--spacing-01);">
+    <div class="eu-notification" role="status">
+      <div class="eu-notification__icon" aria-hidden="true">i</div>
+      <div class="eu-notification__body"><span class="eu-notification__title">Schedule updated.</span> Window now opens at 06:00 EST tomorrow.</div>
+      <button class="eu-notification__close" aria-label="Dismiss">✕</button>
+    </div>
+    <div class="eu-notification eu-notification--error" role="alert">
+      <div class="eu-notification__icon" aria-hidden="true">✕</div>
+      <div class="eu-notification__body"><span class="eu-notification__title">Save failed.</span> Network timeout after 8s. Your changes are preserved locally.</div>
+      <button class="eu-notification__close" aria-label="Dismiss">✕</button>
+    </div>
+  </div>
+
+  <div class="section">TOAST — TRANSIENT NOTIFICATION</div>
+  <p class="note">Use for ephemeral confirmations after an action. Auto-dismiss after 4–6s for success/info, persistent (until dismissed) for warning/error. Region uses <code style="font-family: var(--font-mono);">aria-live="polite"</code>; individual toasts inherit.</p>
+  <div class="toast-stage">
+    <div style="font-size: 12px; color: var(--gray-50); letter-spacing: 0.16px;">Page content (toasts float bottom-right) →</div>
+    <div class="eu-toast-region" aria-live="polite">
+      <div class="eu-toast eu-toast--success">
+        <div class="eu-toast__body"><strong>Site registered.</strong> Boston Logistics Hub is now live.</div>
+        <button class="eu-toast__close" aria-label="Dismiss">✕</button>
+      </div>
+      <div class="eu-toast">
+        <div class="eu-toast__body"><strong>Operator authorized.</strong> NE Aero DSP has flight access through 22:00.</div>
+        <button class="eu-toast__close" aria-label="Dismiss">✕</button>
+      </div>
+      <div class="eu-toast eu-toast--warning">
+        <div class="eu-toast__body"><strong>Window closing in 5 min.</strong> No active flights will be interrupted.</div>
+        <button class="eu-toast__close" aria-label="Dismiss">✕</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

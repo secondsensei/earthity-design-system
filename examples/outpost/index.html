@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outpost — earthity</title>
+<link rel="stylesheet" href="../../earthity-tokens.css">
+<link rel="stylesheet" href="../../earthity-components.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+<style>
+  html, body, #root { height: 100%; margin: 0; }
+  body { background: var(--gray-100); color: var(--gray-10); }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--gray-90); }
+  ::-webkit-scrollbar-thumb { background: var(--gray-70); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState } = React;
+
+// ─── Shared layout ────────────────────────────────────────────────────────────
+function Nav({ view, setView }) {
+  const links = [['landing','Overview'],['host','Host portal'],['operator','Operator portal'],['network','Network']];
+  return (
+    <nav className="eu-nav eu-nav--dark">
+      <a href="#" className="eu-nav__wordmark" onClick={(e) => { e.preventDefault(); setView('landing'); }}>Outpost</a>
+      {links.map(([v, label]) => (
+        <a key={v} href="#" className="eu-nav__link" aria-current={view === v ? 'page' : undefined}
+           onClick={(e) => { e.preventDefault(); setView(v); }}>{label}</a>
+      ))}
+      <div className="eu-nav__right">
+        <a href="#" className="eu-nav__link">Sign in</a>
+        <button className="eu-btn eu-btn--primary eu-btn--symmetric">Get started</button>
+      </div>
+    </nav>
+  );
+}
+
+// ─── Landing ──────────────────────────────────────────────────────────────────
+function LandingView({ setView }) {
+  return (
+    <div style={{ flex: 1, overflowY: 'auto', background: 'var(--gray-100)' }}>
+      <section style={{ padding: '96px 64px 80px', borderBottom: '1px solid var(--gray-90)' }}>
+        <div style={{ maxWidth: 800 }}>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--gray-60)', letterSpacing: '0.32px', marginBottom: 24, textTransform: 'uppercase' }}>The autonomous airspace network</div>
+          <h1 className="t-display-01" style={{ color: 'var(--white)', marginBottom: 24 }}>Autonomous airspace,<br/>at network scale.</h1>
+          <p className="t-body-long-01" style={{ color: 'var(--gray-30)', maxWidth: 560, marginBottom: 40 }}>
+            Outpost connects hosts and operators across a shared autonomous airspace network. Every flight corridor is authorized, logged, and managed in real time.
+          </p>
+          <div style={{ display: 'flex', gap: 2 }}>
+            <button className="eu-btn eu-btn--primary" onClick={() => setView('operator')}>Access as operator →</button>
+            <button className="eu-btn eu-btn--tertiary eu-btn--on-dark eu-btn--symmetric" onClick={() => setView('host')}>Join as a host</button>
+          </div>
+        </div>
+      </section>
+
+      <section style={{ background: 'var(--gray-90)', padding: '24px 64px', borderBottom: '1px solid var(--gray-80)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
+          <div className="eu-stat eu-stat--bare"><span className="eu-stat__label">Active sites</span><span className="eu-stat__value" style={{ color: 'var(--gray-10)' }}>247</span></div>
+          <div className="eu-stat eu-stat--bare"><span className="eu-stat__label">Operators</span><span className="eu-stat__value" style={{ color: 'var(--gray-10)' }}>89</span></div>
+          <div className="eu-stat eu-stat--bare"><span className="eu-stat__label">Flights today</span><span className="eu-stat__value" style={{ color: 'var(--gray-10)' }}>1,402</span></div>
+          <div className="eu-stat eu-stat--bare"><span className="eu-stat__label">Corridors</span><span className="eu-stat__value" style={{ color: 'var(--gray-10)' }}>34</span></div>
+          <div style={{ marginLeft: 'auto' }}><span className="eu-tag eu-tag--success">All corridors operational</span></div>
+        </div>
+      </section>
+
+      <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2, background: 'var(--gray-80)' }}>
+        <a href="#" className="eu-tile eu-tile--dark eu-tile--interactive" style={{ padding: '48px 48px 40px' }} onClick={(e) => { e.preventDefault(); setView('host'); }}>
+          <div className="eu-tile__eyebrow">FOR HOSTS</div>
+          <div className="eu-tile__title" style={{ fontSize: 32, fontWeight: 'var(--fw-light)' }}>Open your site<br/>to the network.</div>
+          <div className="eu-tile__body">Register a landing pad, charging station, or relay node. Earn from every operation run through your site.</div>
+          <div style={{ color: 'var(--blue-40)' }}>Register a site →</div>
+        </a>
+        <a href="#" className="eu-tile eu-tile--dark eu-tile--interactive" style={{ padding: '48px 48px 40px', background: 'var(--gray-90)' }} onClick={(e) => { e.preventDefault(); setView('operator'); }}>
+          <div className="eu-tile__eyebrow">FOR OPERATORS</div>
+          <div className="eu-tile__title" style={{ fontSize: 32, fontWeight: 'var(--fw-light)' }}>Access 247 active<br/>host sites.</div>
+          <div className="eu-tile__body">Plan routes, request corridor access, and manage your fleet across the Outpost network.</div>
+          <div style={{ color: 'var(--blue-40)' }}>Connect your fleet →</div>
+        </a>
+      </section>
+
+      <section style={{ background: 'var(--white)', color: 'var(--eu-text-primary)', padding: '48px 64px' }}>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--gray-60)', letterSpacing: '0.32px', marginBottom: 24, textTransform: 'uppercase' }}>Who operates on Outpost</div>
+        <div className="eu-grid-3">
+          {[
+            ['Drone service providers', 'DSPs managing commercial delivery, inspection, and survey operations at scale.'],
+            ['IT providers', 'Technology firms running drone programs on behalf of enterprise clients.'],
+            ['Enterprises', 'Organizations with internal drone operations — logistics, facilities, security.'],
+          ].map(([title, desc]) => (
+            <div key={title} className="eu-tile eu-tile--layer-01">
+              <div className="eu-tile__title">{title}</div>
+              <div className="eu-tile__body">{desc}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
+
+// ─── Host portal ──────────────────────────────────────────────────────────────
+function HostView() {
+  const [tab, setTab] = useState('overview');
+  const sites = [
+    { id: 'OPS-0041', name: 'Boston Logistics Hub', type: 'Landing pad', status: 'success', corridor: 'NE-BOS-04', flights: 1402, earnings: '$2,840' },
+    { id: 'OPS-0042', name: 'Hartford Landing', type: 'Charging station', status: 'success', corridor: 'NE-HFD-02', flights: 847, earnings: '$1,694' },
+    { id: 'OPS-0043', name: 'Providence Relay', type: 'Relay node', status: 'neutral', corridor: 'NE-PRV-01', flights: 0, earnings: '$0' },
+  ];
+  return (
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      <div className="eu-tabs" style={{ background: 'var(--gray-90)', borderBottom: '1px solid var(--gray-80)' }} role="tablist">
+        <span style={{ fontSize: 13, color: 'var(--gray-60)', letterSpacing: '0.16px', display: 'flex', alignItems: 'center', marginRight: 16, paddingLeft: 8 }}>Host portal</span>
+        {['overview','sites','flights','earnings','settings'].map(t => (
+          <button key={t} className="eu-tab" role="tab" aria-selected={tab === t} onClick={() => setTab(t)} style={{ textTransform: 'capitalize' }}>{t}</button>
+        ))}
+      </div>
+      <div style={{ flex: 1, overflowY: 'auto', background: 'var(--gray-100)' }}>
+        <div style={{ padding: '32px 32px 24px', borderBottom: '1px solid var(--gray-90)' }}>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--gray-60)', letterSpacing: '0.32px', textTransform: 'uppercase', marginBottom: 8 }}>Host dashboard</div>
+          <h1 className="t-heading-02" style={{ color: 'var(--gray-10)', fontWeight: 'var(--fw-light)', marginBottom: 24 }}>Your network sites</h1>
+          <div style={{ display: 'flex', gap: 32 }}>
+            <div className="eu-stat eu-stat--bare"><span className="eu-stat__label">Active sites</span><span className="eu-stat__value" style={{ color: 'var(--gray-10)' }}>2</span></div>
+            <div className="eu-stat eu-stat--bare"><span className="eu-stat__label">Total flights</span><span className="eu-stat__value" style={{ color: 'var(--gray-10)' }}>2,249</span></div>
+            <div className="eu-stat eu-stat--bare"><span className="eu-stat__label">Earnings (Apr)</span><span className="eu-stat__value" style={{ color: 'var(--gray-10)' }}>$4,534</span></div>
+            <div className="eu-stat eu-stat--bare"><span className="eu-stat__label">Operators</span><span className="eu-stat__value" style={{ color: 'var(--gray-10)' }}>12</span></div>
+          </div>
+        </div>
+
+        <div style={{ padding: 32 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+            <div style={{ fontSize: 14, fontWeight: 'var(--fw-semibold)', color: 'var(--gray-10)' }}>Registered sites</div>
+            <button className="eu-btn eu-btn--primary eu-btn--sm eu-btn--symmetric">+ Register site</button>
+          </div>
+          <table className="eu-table" style={{ background: 'var(--gray-100)' }}>
+            <thead>
+              <tr>
+                <th style={{ background: 'var(--gray-80)', color: 'var(--gray-50)' }}>SITE ID</th>
+                <th style={{ background: 'var(--gray-80)', color: 'var(--gray-50)' }}>NAME</th>
+                <th style={{ background: 'var(--gray-80)', color: 'var(--gray-50)' }}>TYPE</th>
+                <th style={{ background: 'var(--gray-80)', color: 'var(--gray-50)' }}>CORRIDOR</th>
+                <th style={{ background: 'var(--gray-80)', color: 'var(--gray-50)' }}>STATUS</th>
+                <th style={{ background: 'var(--gray-80)', color: 'var(--gray-50)' }}>FLIGHTS</th>
+                <th style={{ background: 'var(--gray-80)', color: 'var(--gray-50)' }}>EARN</th>
+              </tr>
+            </thead>
+            <tbody>
+              {sites.map((s, i) => (
+                <tr key={s.id} style={{ background: i % 2 === 0 ? 'var(--gray-90)' : 'var(--gray-100)' }}>
+                  <td><span className="eu-mono-id" style={{ color: 'var(--gray-50)' }}>{s.id}</span></td>
+                  <td style={{ color: 'var(--gray-10)' }}>{s.name}</td>
+                  <td style={{ color: 'var(--gray-50)', fontSize: 12 }}>{s.type}</td>
+                  <td><span className="eu-mono-id" style={{ color: 'var(--blue-40)' }}>{s.corridor}</span></td>
+                  <td><span className={`eu-tag eu-tag--${s.status}`}>{s.status === 'success' ? 'Active' : 'Inactive'}</span></td>
+                  <td style={{ fontFamily: 'var(--font-mono)', color: 'var(--gray-10)' }}>{s.flights.toLocaleString()}</td>
+                  <td style={{ fontFamily: 'var(--font-mono)', color: s.status === 'success' ? 'var(--green-50)' : 'var(--gray-60)' }}>{s.earnings}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div style={{ margin: '0 32px 32px' }}>
+          <div className="eu-notification" role="status" style={{ background: 'var(--gray-90)', color: 'var(--gray-10)' }}>
+            <div className="eu-notification__icon" aria-hidden="true">i</div>
+            <div className="eu-notification__body" style={{ color: 'var(--gray-30)' }}>
+              <span className="eu-notification__title" style={{ color: 'var(--white)' }}>Corridor NE-BOS-04 is active.</span> 3 operators authorized through 22:00 EST. Your availability window renews tomorrow at 06:00.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Operator portal ──────────────────────────────────────────────────────────
+function OperatorView() {
+  const [tab, setTab] = useState('overview');
+  const corridors = [
+    { id: 'NE-BOS-04', name: 'Boston Metro', sites: 8, ops: 3, status: 'success', label: 'active', flights: 412 },
+    { id: 'NE-HFD-02', name: 'Hartford Loop', sites: 4, ops: 2, status: 'success', label: 'active', flights: 198 },
+    { id: 'NE-PRV-01', name: 'Providence Line', sites: 3, ops: 1, status: 'warning', label: 'pending', flights: 0 },
+    { id: 'NE-WOR-03', name: 'Worcester Hub', sites: 5, ops: 0, status: 'neutral', label: 'inactive', flights: 0 },
+  ];
+  return (
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      <div className="eu-tabs" style={{ background: 'var(--gray-90)', borderBottom: '1px solid var(--gray-80)' }} role="tablist">
+        <span style={{ fontSize: 13, color: 'var(--gray-60)', letterSpacing: '0.16px', display: 'flex', alignItems: 'center', marginRight: 16, paddingLeft: 8 }}>Operator portal</span>
+        {['overview','corridors','fleet','requests','settings'].map(t => (
+          <button key={t} className="eu-tab" role="tab" aria-selected={tab === t} onClick={() => setTab(t)} style={{ textTransform: 'capitalize' }}>{t}</button>
+        ))}
+      </div>
+      <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
+        <aside className="eu-sidebar">
+          <div className="eu-sidebar__header" style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
+            <div style={{ fontSize: 11, color: 'var(--gray-60)', letterSpacing: '0.32px', textTransform: 'uppercase' }}>Organization</div>
+            <div style={{ fontSize: 14, color: 'var(--white)', fontWeight: 'var(--fw-semibold)' }}>NE Aero DSP</div>
+            <span className="eu-tag eu-tag--dsp" style={{ marginTop: 4 }}>DSP</span>
+          </div>
+          <nav className="eu-sidebar__nav">
+            {[['Dashboard','overview'],['Active corridors','corridors'],['Fleet status','fleet'],['Access requests','requests'],['Settings','settings']].map(([label, v]) => (
+              <a key={v} href="#" className="eu-sidebar__item" aria-current={tab === v ? 'page' : undefined} onClick={(e) => { e.preventDefault(); setTab(v); }}>{label}</a>
+            ))}
+          </nav>
+        </aside>
+        <div style={{ flex: 1, overflowY: 'auto', background: 'var(--gray-100)', padding: 32 }}>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--gray-60)', letterSpacing: '0.32px', textTransform: 'uppercase', marginBottom: 8 }}>Operator dashboard</div>
+          <h1 className="t-heading-02" style={{ color: 'var(--gray-10)', fontWeight: 'var(--fw-light)', marginBottom: 24 }}>Network access overview</h1>
+
+          <div className="eu-grid-4" style={{ marginBottom: 24 }}>
+            {[['Corridors active', '2'],['Sites accessible', '12'],['Flights today', '610'],['Fleet online', '8']].map(([label, val]) => (
+              <div key={label} className="eu-stat eu-stat--dark"><span className="eu-stat__label">{label}</span><span className="eu-stat__value">{val}</span></div>
+            ))}
+          </div>
+
+          <div style={{ fontSize: 14, fontWeight: 'var(--fw-semibold)', color: 'var(--gray-10)', marginBottom: 12 }}>Corridor access</div>
+          <table className="eu-table" style={{ background: 'var(--gray-100)' }}>
+            <thead>
+              <tr>
+                <th style={{ background: 'var(--gray-80)', color: 'var(--gray-50)' }}>ID</th>
+                <th style={{ background: 'var(--gray-80)', color: 'var(--gray-50)' }}>CORRIDOR</th>
+                <th style={{ background: 'var(--gray-80)', color: 'var(--gray-50)' }}>SITES</th>
+                <th style={{ background: 'var(--gray-80)', color: 'var(--gray-50)' }}>OPS</th>
+                <th style={{ background: 'var(--gray-80)', color: 'var(--gray-50)' }}>STATUS</th>
+                <th style={{ background: 'var(--gray-80)', color: 'var(--gray-50)' }}>FLIGHTS</th>
+              </tr>
+            </thead>
+            <tbody>
+              {corridors.map((c, i) => (
+                <tr key={c.id} style={{ background: i % 2 === 0 ? 'var(--gray-90)' : 'var(--gray-100)' }}>
+                  <td><span className="eu-mono-id" style={{ color: 'var(--blue-40)' }}>{c.id}</span></td>
+                  <td style={{ color: 'var(--gray-10)' }}>{c.name}</td>
+                  <td style={{ fontFamily: 'var(--font-mono)', color: 'var(--gray-50)' }}>{c.sites}</td>
+                  <td style={{ fontFamily: 'var(--font-mono)', color: 'var(--gray-50)' }}>{c.ops}</td>
+                  <td><span className={`eu-tag eu-tag--${c.status}`}>{c.label}</span></td>
+                  <td style={{ fontFamily: 'var(--font-mono)', color: 'var(--gray-10)' }}>{c.flights.toLocaleString()}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          <div style={{ marginTop: 16 }}>
+            <button className="eu-btn eu-btn--tertiary eu-btn--on-dark eu-btn--symmetric eu-btn--sm">+ Request corridor access</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Network map ──────────────────────────────────────────────────────────────
+function NetworkView() {
+  const nodes = [
+    { id: 'OPS-0041', name: 'Boston Logistics Hub', lat: 42.36, lon: -71.06, active: true },
+    { id: 'OPS-0042', name: 'Hartford Landing', lat: 41.76, lon: -72.68, active: true },
+    { id: 'OPS-0043', name: 'Providence Relay', lat: 41.82, lon: -71.41, active: false },
+    { id: 'OPS-0044', name: 'Worcester Hub', lat: 42.26, lon: -71.80, active: true },
+    { id: 'OPS-0045', name: 'New Haven Node', lat: 41.31, lon: -72.92, active: false },
+  ];
+  const toXY = (lat, lon) => ({
+    x: ((lon - (-73.5)) / ((-70.5) - (-73.5))) * 620 + 40,
+    y: ((43.0 - lat) / (43.0 - 41.0)) * 300 + 40,
+  });
+  return (
+    <div style={{ flex: 1, overflowY: 'auto', background: 'var(--gray-100)' }}>
+      <div style={{ padding: 32, borderBottom: '1px solid var(--gray-90)' }}>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--gray-60)', letterSpacing: '0.32px', textTransform: 'uppercase', marginBottom: 8 }}>Outpost network</div>
+        <h1 className="t-heading-02" style={{ color: 'var(--gray-10)', fontWeight: 'var(--fw-light)', marginBottom: 4 }}>Northeast corridor map</h1>
+        <p style={{ fontSize: 14, color: 'var(--gray-50)', letterSpacing: '0.16px' }}>247 sites · 34 corridors · 89 operators</p>
+      </div>
+      <div style={{ padding: 32 }}>
+        <div style={{ background: 'var(--gray-90)', height: 380 }}>
+          <svg width="100%" height="380" viewBox="0 0 700 380">
+            {[0,1,2,3,4].map(i => <line key={`v${i}`} x1={40 + i*155} y1={40} x2={40 + i*155} y2={340} stroke="var(--gray-80)" strokeWidth={1} strokeDasharray="4,4" />)}
+            {[0,1,2,3].map(i => <line key={`h${i}`} x1={40} y1={40 + i*100} x2={660} y2={40 + i*100} stroke="var(--gray-80)" strokeWidth={1} strokeDasharray="4,4" />)}
+            {nodes.filter(n => n.active).map(n => nodes.filter(m => m.active && m.id !== n.id).slice(0, 1).map(m => {
+              const p = toXY(n.lat, n.lon); const q = toXY(m.lat, m.lon);
+              return <line key={n.id+m.id} x1={p.x} y1={p.y} x2={q.x} y2={q.y} stroke="var(--blue-60)" strokeWidth={1} strokeOpacity={0.4} />;
+            }))}
+            {nodes.map(n => {
+              const { x, y } = toXY(n.lat, n.lon);
+              return (
+                <g key={n.id}>
+                  <circle cx={x} cy={y} r={n.active ? 8 : 5} fill={n.active ? 'var(--blue-60)' : 'var(--gray-70)'} />
+                  {n.active && <circle cx={x} cy={y} r={14} fill="var(--blue-60)" fillOpacity={0.15} />}
+                  <text x={x + 14} y={y + 4} fill={n.active ? 'var(--gray-30)' : 'var(--gray-60)'} fontSize={11} fontFamily="var(--font-mono)">{n.id}</text>
+                </g>
+              );
+            })}
+          </svg>
+        </div>
+        <div className="eu-grid-3" style={{ marginTop: 24 }}>
+          {nodes.map(n => (
+            <div key={n.id} className="eu-tile eu-tile--dark eu-tile--interactive">
+              <div className="eu-mono-id" style={{ color: 'var(--blue-40)', fontSize: 11, marginBottom: 4 }}>{n.id}</div>
+              <div className="eu-tile__title" style={{ fontSize: 14 }}>{n.name}</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--gray-60)' }}>{n.lat.toFixed(4)}° N · {Math.abs(n.lon).toFixed(4)}° W</div>
+              <span className={`eu-tag ${n.active ? 'eu-tag--success' : 'eu-tag--neutral'}`} style={{ marginTop: 8 }}>{n.active ? 'Active' : 'Inactive'}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── App ──────────────────────────────────────────────────────────────────────
+function App() {
+  const [view, setView] = useState('landing');
+  return (
+    <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+      <Nav view={view} setView={setView} />
+      {view === 'landing' && <LandingView setView={setView} />}
+      {view === 'host' && <HostView />}
+      {view === 'operator' && <OperatorView />}
+      {view === 'network' && <NetworkView />}
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

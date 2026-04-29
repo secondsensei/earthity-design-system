@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Spacing tokens — earthity</title>
+<link rel="stylesheet" href="../earthity-tokens.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--eu-background); padding: var(--spacing-06); font-family: var(--font-sans); }
+  .section { font-size: 11px; font-weight: var(--fw-semibold); color: var(--eu-text-secondary); letter-spacing: 0.32px; margin-bottom: var(--spacing-04); margin-top: var(--spacing-06); }
+  .section:first-child { margin-top: 0; }
+  .scale-row { display: flex; align-items: center; gap: var(--spacing-04); margin-bottom: var(--spacing-02); }
+  .bar { background: var(--blue-60); height: 8px; }
+  .bar--layout { background: var(--gray-90); }
+  .token { font-family: var(--font-mono); font-size: 10px; color: var(--gray-50); letter-spacing: 0.16px; width: 90px; flex-shrink: 0; }
+  .px { font-size: 11px; color: var(--eu-text-secondary); width: 36px; flex-shrink: 0; text-align: right; }
+  .use { font-size: 10px; color: var(--gray-50); }
+  .radius-row { display: flex; gap: var(--spacing-06); align-items: flex-end; margin-top: var(--spacing-02); }
+  .radius-cell { text-align: center; }
+  .radius-label { font-size: 10px; color: var(--eu-text-secondary); font-weight: var(--fw-semibold); }
+  .radius-use { font-size: 9px; color: var(--gray-50); }
+</style>
+</head>
+<body>
+  <div class="section">COMPONENT SPACING SCALE</div>
+  <div class="scale-row"><span class="token">--spacing-01</span><span class="px">2px</span><div class="bar" style="width: var(--spacing-01)"></div><span class="use">micro-adjustment, icon gap</span></div>
+  <div class="scale-row"><span class="token">--spacing-02</span><span class="px">4px</span><div class="bar" style="width: var(--spacing-02)"></div><span class="use">tight label gap</span></div>
+  <div class="scale-row"><span class="token">--spacing-03</span><span class="px">8px</span><div class="bar" style="width: var(--spacing-03)"></div><span class="use">base unit, tag padding</span></div>
+  <div class="scale-row"><span class="token">--spacing-04</span><span class="px">12px</span><div class="bar" style="width: var(--spacing-04)"></div><span class="use">compact component padding</span></div>
+  <div class="scale-row"><span class="token">--spacing-05</span><span class="px">16px</span><div class="bar" style="width: var(--spacing-05)"></div><span class="use">card padding, component default</span></div>
+  <div class="scale-row"><span class="token">--spacing-06</span><span class="px">24px</span><div class="bar" style="width: var(--spacing-06)"></div><span class="use">intra-section gap</span></div>
+  <div class="scale-row"><span class="token">--spacing-07</span><span class="px">32px</span><div class="bar" style="width: var(--spacing-07)"></div><span class="use">grid gutter, group separation</span></div>
+  <div class="scale-row"><span class="token">--spacing-08</span><span class="px">40px</span><div class="bar" style="width: var(--spacing-08)"></div><span class="use">sub-section spacing</span></div>
+  <div class="scale-row"><span class="token">--spacing-09</span><span class="px">48px</span><div class="bar" style="width: var(--spacing-09)"></div><span class="use">section rhythm, nav height</span></div>
+
+  <div class="section">LAYOUT SPACING SCALE</div>
+  <div class="scale-row"><span class="token">--spacing-10</span><span class="px">64px</span><div class="bar bar--layout" style="width: var(--spacing-10)"></div><span class="use">section padding</span></div>
+  <div class="scale-row"><span class="token">--spacing-11</span><span class="px">80px</span><div class="bar bar--layout" style="width: var(--spacing-11)"></div><span class="use">hero section</span></div>
+  <div class="scale-row"><span class="token">--spacing-12</span><span class="px">96px</span><div class="bar bar--layout" style="width: var(--spacing-12)"></div><span class="use">major hero section</span></div>
+  <div class="scale-row"><span class="token">--spacing-13</span><span class="px">160px</span><div class="bar bar--layout" style="width: var(--spacing-13)"></div><span class="use">page-level breathing room</span></div>
+
+  <div class="section">BORDER RADIUS SCALE</div>
+  <div class="radius-row">
+    <div class="radius-cell">
+      <div style="width: 60px; height: 60px; background: var(--gray-10); border-radius: var(--radius-none); outline: 1px solid var(--gray-20); margin-bottom: 6px;"></div>
+      <div class="radius-label">--radius-none (0px)</div>
+      <div class="radius-use">buttons, inputs,<br>cards, tiles</div>
+    </div>
+    <div class="radius-cell">
+      <div style="width: 60px; height: 28px; background: var(--blue-60); border-radius: var(--radius-pill); margin-bottom: 6px; display: flex; align-items: center; justify-content: center;">
+        <span style="font-size: 10px; color: var(--white); font-weight: var(--fw-semibold);">tag</span>
+      </div>
+      <div class="radius-label">--radius-pill (24px)</div>
+      <div class="radius-use">tags, labels<br>only</div>
+    </div>
+    <div class="radius-cell">
+      <div style="width: 40px; height: 40px; background: var(--gray-100); border-radius: var(--radius-circle); margin-bottom: 6px; display: flex; align-items: center; justify-content: center;">
+        <span style="font-size: 12px; color: var(--white); font-weight: var(--fw-semibold);">JD</span>
+      </div>
+      <div class="radius-label">--radius-circle (50%)</div>
+      <div class="radius-use">avatars<br>only</div>
+    </div>
+  </div>
+</body>
+</html>
