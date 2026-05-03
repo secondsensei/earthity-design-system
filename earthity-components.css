@@ -925,3 +925,42 @@
 .eu-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
 .eu-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
 .eu-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+
+/* ============================================================
+   SECTION HEADER
+   Marketing/product section opener: a thin blue accent bar above
+   a single-line title. The title may include a trailing secondary
+   span — same font-size, lighter weight, dimmer color — for a
+   continuation phrase. Only one bar; the secondary inherits its
+   typography from the title text-flow.
+   The bar's width is purely visual; consumers typically size it
+   dynamically via JS to match the title's lead phrase. The default
+   is full-width within the container.
+   Use `--inv` for a single dark section on an otherwise light page
+   (text colors flip). For a fully dark theme, prefer wrapping in
+   `[data-theme="dark"]` so all tokens flip together.
+   ============================================================ */
+.eu-section-header {
+  margin-bottom: var(--spacing-06);
+}
+.eu-section-header__bar {
+  height: 3px;
+  background: var(--blue-60);
+  margin-bottom: var(--spacing-04);
+}
+.eu-section-header__title {
+  font-size: var(--type-heading-04-size);
+  font-weight: var(--type-heading-04-weight);
+  line-height: var(--type-heading-04-lh);
+  color: var(--eu-text-primary);
+  margin: 0;
+}
+.eu-section-header__secondary {
+  /* Inherits font-size + line-height from __title (same text-flow);
+     differs only in weight and color. */
+  color: var(--eu-text-secondary);
+  font-weight: var(--fw-regular);
+}
+
+.eu-section-header--inv .eu-section-header__title { color: var(--eu-text-inverse); }
+.eu-section-header--inv .eu-section-header__secondary { color: var(--gray-30); }

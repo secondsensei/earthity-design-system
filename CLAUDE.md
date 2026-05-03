@@ -119,6 +119,49 @@ Two layers of override are supported. Use the right one:
 
 ---
 
+## 5b. Consumer CSS conventions (what to use in your own stylesheet)
+
+§5 covers what to leave alone. This covers what to reach for when you write your project's own CSS — `site.css`, `app.css`, whatever.
+
+### Naming — BEM-ish, no `eu-` prefix
+
+Mirror the system's pattern but drop the prefix (the `eu-` namespace is reserved):
+
+| Pattern | Form | Example |
+|---|---|---|
+| Block | `.section-name` | `.hero`, `.footer`, `.product-grid` |
+| Element | `.section-name__part` | `.hero__copy`, `.footer__grid`, `.product-grid__tile` |
+| Modifier | `.section-name__part--variant` | `.product-grid__tile--featured`, `.footer__heading--inv` |
+
+**No utility classes** in consumer code. Use semantic component names. For one-off type/color/spacing needs, use the system utilities (`.t-*`, `.c-*`, `.bg-*`, `.p-*`, `.mt-*`, `.mb-*`) defined in `earthity-tokens.css` — don't invent your own.
+
+### No inline `style=` attributes
+
+Every consumer style belongs in a stylesheet. Inline `style=` forces CSP `style-src 'unsafe-inline'`, defeating the strict CSP posture this system supports (see §5 token rules and the CSP note at the top of `earthity-tokens.css`).
+
+### Promote shared patterns upstream
+
+If a pattern repeats across pages or projects, propose it as an `eu-` component rather than re-implementing in every consumer. That keeps consumer CSS small and the system's surface coherent.
+
+Existing patterns that are easy to miss and shouldn't be re-invented:
+- **Section headers** (the blue accent bar above a section title, with optional dim continuation text) — use `.eu-section-header` (see §9 quick reference). Don't roll your own `.section-bar` / `.section-heading` in consumer CSS.
+
+### Migration foot-gun: `@media [style*="..."]` selectors
+
+If you're cleaning up an existing codebase and extracting inline styles into classes, **first** grep your stylesheet for media-query rules that target inline-style attribute selectors:
+
+```bash
+grep -rn '\[style\*=' your-css-dir/
+```
+
+These rules silently break when the inline style they target is removed — responsive layout snaps back to desktop on smaller viewports with no error visible. Rewrite each `[style*="..."]` selector to use the new component class you're introducing **in the same commit** as the inline-style removal.
+
+### Full CSP migration journey
+
+Beyond the conventions above, `playbooks/csp-rollout.md` is a complete 5-phase runbook for taking a consumer site from "no CSP" to "enforced strict CSP" — covers inline-pattern migration, static security headers, CSP report-only, hash recipes, accepted exceptions, and the long-tail monitoring window. Read it once before starting; reference per-phase as you execute.
+
+---
+
 ## 6. Behavioral components — what the system does and doesn't ship
 
 The system ships **visual styling** for every component. For interactive behavior, the rule is:
@@ -177,6 +220,7 @@ That gives Claude awareness of the system from cold start (before it touches any
 | Add a status pill | `<span class="eu-tag eu-tag--success">Active</span>` |
 | Add a tile | `<a class="eu-tile eu-tile--interactive">…</a>` |
 | Add a stat | `<div class="eu-stat"><span class="eu-stat__label">…</span><span class="eu-stat__value">…</span></div>` |
+| Add a section header (bar + title + optional dim continuation) | `<header class="eu-section-header"><div class="eu-section-header__bar"></div><h2 class="eu-section-header__title">Lead phrase. <span class="eu-section-header__secondary">Continuation copy.</span></h2></header>` (add `eu-section-header--inv` for a single dark section on a light page) |
 | Mark active nav | `aria-current="page"` (no extra class needed) |
 | Mark selected tab | `aria-selected="true"` (no extra class needed) |
 | Mark loading button | `aria-busy="true"` + add `<span class="eu-btn__spinner">` |
@@ -193,3 +237,4 @@ That gives Claude awareness of the system from cold start (before it touches any
 - `AUDIT.md` — Phase 0 audit; historical record of how the system was structured.
 - `assets/icons/README.md` — Carbon icon subset with consumption paths.
 - `examples/outpost/index.html` — worked example; the canonical product UI built entirely on the system.
+- `playbooks/csp-rollout.md` — 5-phase runbook for taking a consumer site from "no CSP" to "enforced strict CSP." Generic; consumer keeps a session-specific runbook for actual commits.
