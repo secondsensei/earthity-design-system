@@ -500,6 +500,28 @@
 
 .eu-nav__right { margin-left: auto; display: flex; align-items: center; gap: 2px; }
 
+/* Solid-blue inline CTA pill that lives in the right cluster of the nav.
+   Matches the earthity marketing "Talk to us" call-to-action: full-height,
+   solid blue-60, IBM Plex Sans body-short text. Use as a sibling of
+   .eu-nav__link inside .eu-nav__right. */
+.eu-nav__cta {
+  align-self: stretch;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--spacing-05);
+  background: var(--blue-60);
+  color: var(--white);
+  font-family: var(--font-sans);
+  font-size: var(--type-body-short-01-size);
+  letter-spacing: var(--type-body-short-01-ls);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 70ms ease;
+}
+.eu-nav__cta:hover { background: var(--blue-60-hover); }
+.eu-nav__cta:active { background: var(--blue-80); }
+.eu-nav__cta:focus-visible { outline: 2px solid var(--eu-focus); outline-offset: -2px; }
+
 /* tabs (visual only — consumer wires ARIA + keyboard) */
 .eu-tabs {
   display: flex;
