@@ -1,0 +1,84 @@
+{
+  "$comment": "Canonical cross-repo analytics contract for earthity. Single source of truth consumed by earthity-website (static www marketing site) and earthity-dev (Outpost Next.js app). Both repos pull this via the earthity-design-system submodule. Human-readable companions in this folder: architecture.md, routes.md, analytics-events.md. Change events/cta/regions HERE, then update both consumers in lockstep.",
+  "version": 1,
+  "posthog": {
+    "projectKeyEnvVar": "NEXT_PUBLIC_POSTHOG_KEY",
+    "projectKey": "phc_wG7ChQBd9u6jBdNag4qGUbDYBpiFyJVKDkRBtAKkvGLG",
+    "apiHost": "/ingest",
+    "uiHost": "https://us.posthog.com",
+    "personProfiles": "identified_only",
+    "crossSubdomainCookie": true,
+    "cookieDomain": ".earthity.com",
+    "disableSessionRecording": true
+  },
+  "naming": {
+    "convention": "snake_case, past-tense verb, object/persona prefix",
+    "examples": ["signed_up", "cta_clicked", "host_onboard_step_viewed"]
+  },
+  "events": {
+    "website": [
+      "cta_clicked",
+      "lead_submitted",
+      "newsletter_subscribed",
+      "data_room_requested",
+      "data_room_accessed"
+    ],
+    "app": [
+      "signed_up",
+      "demo_entered",
+      "dashboard_viewed",
+      "operator_onboard_step_viewed",
+      "operator_onboard_step_completed",
+      "operator_onboard_completed",
+      "host_onboard_step_viewed",
+      "host_onboard_step_completed",
+      "host_onboard_completed"
+    ],
+    "appServer": [
+      "intent_pin_created",
+      "site_created",
+      "plot_created",
+      "network_created"
+    ]
+  },
+  "cta": ["host", "fly", "operatorOnboard", "signIn", "bookCall", "contact"],
+  "ctaDestinations": {
+    "host": "https://outpost.earthity.com/host/onboard",
+    "fly": "https://outpost.earthity.com/operator/onboard",
+    "operatorOnboard": "https://outpost.earthity.com/operator/onboard",
+    "signIn": "https://outpost.earthity.com/",
+    "bookCall": "https://calendly.com/bhowmiktanumaya/tanumaya",
+    "contact": "/contact/"
+  },
+  "properties": {
+    "cta": "which primary CTA role was clicked (one of the `cta` enum)",
+    "page": "normalized location.pathname the event fired on",
+    "section": "data-cta-section value identifying placement within a page",
+    "label": "trimmed visible text of the clicked element",
+    "destination": "host of the resolved href, or the literal 'outpost' for outpost.earthity.com",
+    "is_outbound": "true when the destination host differs from the page host",
+    "form": "which form produced a conversion (e.g. 'contact')",
+    "source": "originating surface of a conversion (e.g. 'footer', 'contact')",
+    "email_domain": "domain part of a submitted email, no local part (e.g. 'acme.com')",
+    "email_type": "'corporate' or 'free' — classified via freeEmailProviders"
+  },
+  "urlStitch": {
+    "param": "distinct_id",
+    "note": "www appends ?distinct_id=<posthog.get_distinct_id()> (plus pass-through utm_*) to outpost-bound CTA hrefs at click time; the app reads it as posthog bootstrap.distinctID when no stored id exists. Hardens the .earthity.com cross-subdomain cookie stitch against Safari ITP / Brave cookie partitioning."
+  },
+  "freeEmailProviders": [
+    "gmail.com", "googlemail.com", "outlook.com", "hotmail.com", "live.com", "msn.com",
+    "yahoo.com", "ymail.com", "icloud.com", "me.com", "mac.com", "aol.com",
+    "proton.me", "protonmail.com", "gmx.com", "gmx.net", "mail.com", "zoho.com",
+    "yandex.com", "fastmail.com"
+  ],
+  "regions": {
+    "$comment": "Geo->consent 'required' bloc: EEA (EU-27 + IS/LI/NO) + UK + CH = 32 ISO-3166-1 alpha-2 codes. Visitors here are opt-out by default; missing/unknown country fails closed to 'required'. Consumed by earthity-website/middleware.js (REQUIRED_REGIONS) and earthity-dev/lib/analytics/regions.ts (REQUIRED_REGIONS). Must match both byte-for-byte.",
+    "required": [
+      "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE", "IT",
+      "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE",
+      "IS", "LI", "NO",
+      "GB", "CH"
+    ]
+  }
+}
