@@ -20,6 +20,7 @@ machine-readable core that code/tests consume). Companions:
 | `newsletter_subscribed` | newsletter POST returns 200 | `page, email_domain, email_type` |
 | `data_room_requested` | valid submit of `#data-room-form` | `page, email_domain, email_type` |
 | `data_room_accessed` | success branch, just before the Drive redirect | `page, email_domain, email_type` |
+| `stack_step_view` | a drone-program Stack step is opened (nav click / card expand) | `step, step_label, page` |
 
 `$pageview` (built-in, `capture_pageview:true`) anchors page-to-page funnels and auto-carries
 `$current_url` + `utm_*` + `$referring_domain`. `$autocapture` is a **discovery layer only** — never a
@@ -50,6 +51,7 @@ host ≠ page host; `email_domain` = domain only (no local part); `email_type` =
 | Book-a-call (SQL) | `$pageview` → `cta_clicked{cta:'bookCall'}` |
 | Investor / data-room | `$pageview(/data-room/)` → `data_room_requested` → `data_room_accessed` |
 | Cross-property www→outpost | anonymous `$pageview`(www) → `cta_clicked{destination:'outpost'}` → app onboarding → `signed_up` (stitched by `distinct_id`) |
+| Drone-program read-depth | `$pageview(/drone-program/)` → `stack_step_view{step:'01'}` → `…{step:'03'}` → `…{step:'06'}` → `cta_clicked{cta:'contact'}` |
 
 Breakdown dimensions: `page, section, cta, utm_source, $referring_domain, email_type`.
 
@@ -61,5 +63,5 @@ Breakdown dimensions: `page, section, cta, utm_source, $referring_domain, email_
   asserted equal to `regions.required`.
 
 ## Deferred to v2
-`stack_step_view` (drone-program 6-step Stack stepper), `section_view`/scroll depth, a generic
-`outbound_click` (partner links, LinkedIn, pitch deck), and an autocapture `css_selector_allowlist`.
+`section_view`/scroll depth, a generic `outbound_click` (partner links, LinkedIn, pitch deck), and an
+autocapture `css_selector_allowlist`.
