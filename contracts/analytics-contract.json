@@ -39,7 +39,8 @@
       "intent_pin_created",
       "site_created",
       "plot_created",
-      "network_created"
+      "network_created",
+      "audit_event"
     ]
   },
   "cta": ["host", "fly", "operatorOnboard", "signIn", "bookCall", "contact"],
@@ -63,7 +64,11 @@
     "email_domain": "domain part of a submitted email, no local part (e.g. 'acme.com')",
     "email_type": "'corporate' or 'free' — classified via freeEmailProviders",
     "step": "drone-program Stack step id reached (e.g. '01'..'06')",
-    "step_label": "human label of the Stack step (e.g. 'Mission')"
+    "step_label": "human label of the Stack step (e.g. 'Mission')",
+    "action": "audit_event: the audit action code (see lib/activity/actions.ts)",
+    "entity_type": "audit_event: entity kind (account|onboarding|property|dock|drone|member|invite)",
+    "subject_user_id": "audit_event: the affected user (null when the actor acted on self)",
+    "is_view_as": "audit_event: true when an admin acted on another user's workspace"
   },
   "urlStitch": {
     "param": "distinct_id",
