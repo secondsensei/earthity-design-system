@@ -30,11 +30,25 @@ The old `outbound_outpost_click` is **retired**: an outpost-bound CTA is the sin
 `destination:'outpost'` + `is_outbound:true`.
 
 ## App events (`earthity-dev`, captured via the typed `capture()` wrapper)
-Client: `signed_up{method}`, `demo_entered`, `dashboard_viewed{persona}`,
+Client (acquisition): `signed_up{method}`, `demo_entered`, `dashboard_viewed{persona}`,
 `operator_onboard_step_viewed/completed{step,stepName,archetype?}`,
 `operator_onboard_completed{archetype?}`, `host_onboard_step_viewed/completed{step,stepName,intendedUse?}`,
-`host_onboard_completed{intendedUse?}`. Server (outbox relay): `intent_pin_created`, `site_created`,
-`plot_created`, `network_created`.
+`host_onboard_completed{intendedUse?}`.
+
+Client (dashboard behavior — demo **and** real; every event carries the `is_demo` super-property so
+demo exploration segments cleanly from real-user activity): `dashboard_section_viewed{persona,section}`,
+`entity_detail_opened{persona,kind}`, `entity_detail_panel_toggled{persona,kind,panel,open}`,
+`entity_edited{persona,kind,field}`, `add_flow_started{persona,kind}`,
+`demo_milestone_reached{persona}` (demo-only; fires once per demo session on first meaningful
+action — the trigger for the surgical demo survey). Demo sessions stay **anonymous**
+(never `identify()`'d — every anon session is the one demo@outpost.com row) but stitch to the real user
+on signup. Note: distinct from the website's deferred `section_view` (scroll depth).
+
+Client (performance): `client_fetch_timed{path,durationMs,ok,status}`,
+`optimistic_commit_timed{persona,durationMs,ok}`. Server-side DB-query timing is **not** a PostHog event
+(a Prisma hook has no serverless flush point) — slow queries go to `AppLog` (admin System tab) via `log.warn`.
+
+Server (outbox relay): `intent_pin_created`, `site_created`, `plot_created`, `network_created`.
 
 ## Property dictionary
 See `analytics-contract.json` → `properties`. Highlights: `page` = normalized `location.pathname`;
@@ -51,6 +65,7 @@ host ≠ page host; `email_domain` = domain only (no local part); `email_type` =
 | Book-a-call (SQL) | `$pageview` → `cta_clicked{cta:'bookCall'}` |
 | Investor / data-room | `$pageview(/data-room/)` → `data_room_requested` → `data_room_accessed` |
 | Cross-property www→outpost | anonymous `$pageview`(www) → `cta_clicked{destination:'outpost'}` → app onboarding → `signed_up` (stitched by `distinct_id`) |
+| Demo engagement (`is_demo:true`) | `demo_entered` → `dashboard_viewed` → `entity_detail_opened` → (`entity_edited` \| `add_flow_started`) → `cta_clicked{cta:'signIn'}` → `signed_up` |
 | Drone-program read-depth | `$pageview(/drone-program/)` → `stack_step_view{step:'01'}` → `…{step:'03'}` → `…{step:'06'}` → `cta_clicked{cta:'contact'}` |
 
 Breakdown dimensions: `page, section, cta, utm_source, $referring_domain, email_type`.

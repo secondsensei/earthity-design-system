@@ -33,7 +33,15 @@
       "operator_onboard_completed",
       "host_onboard_step_viewed",
       "host_onboard_step_completed",
-      "host_onboard_completed"
+      "host_onboard_completed",
+      "dashboard_section_viewed",
+      "entity_detail_opened",
+      "entity_detail_panel_toggled",
+      "entity_edited",
+      "add_flow_started",
+      "demo_milestone_reached",
+      "client_fetch_timed",
+      "optimistic_commit_timed"
     ],
     "appServer": [
       "intent_pin_created",
@@ -68,7 +76,18 @@
     "action": "audit_event: the audit action code (see lib/activity/actions.ts)",
     "entity_type": "audit_event: entity kind (account|onboarding|property|dock|drone|member|invite)",
     "subject_user_id": "audit_event: the affected user (null when the actor acted on self)",
-    "is_view_as": "audit_event: true when an admin acted on another user's workspace"
+    "is_view_as": "audit_event: true when an admin acted on another user's workspace",
+    "is_demo": "super-property stamped on every app event AND session recording: true for anonymous demo sessions (segments demo exploration from real-user activity)",
+    "persona": "dashboard events: 'Host' | 'Operator'",
+    "section": "dashboard_section_viewed: active nav section (home|fleet|map|properties|integration|settings)",
+    "kind": "dashboard entity events: 'dock' | 'property'",
+    "panel": "entity_detail_panel_toggled: which panel toggled ('settings'|'manifest'|'map')",
+    "open": "entity_detail_panel_toggled: true when the panel is open after the toggle",
+    "field": "entity_edited: which field changed (rename|color|location|plots|model|delete)",
+    "durationMs": "perf events (client_fetch_timed, optimistic_commit_timed): measured duration in milliseconds",
+    "ok": "perf events: whether the operation succeeded",
+    "status": "client_fetch_timed: HTTP status code",
+    "path": "client_fetch_timed: request pathname (no query string / PII)"
   },
   "urlStitch": {
     "param": "distinct_id",
