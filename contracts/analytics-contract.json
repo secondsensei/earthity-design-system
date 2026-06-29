@@ -40,6 +40,9 @@
       "entity_edited",
       "add_flow_started",
       "demo_milestone_reached",
+      "profile_prompt_shown",
+      "profile_completed",
+      "profile_prompt_dismissed",
       "client_fetch_timed",
       "optimistic_commit_timed"
     ],
@@ -74,7 +77,7 @@
     "step": "drone-program Stack step id reached (e.g. '01'..'06')",
     "step_label": "human label of the Stack step (e.g. 'Mission')",
     "action": "audit_event: the audit action code (see lib/activity/actions.ts)",
-    "entity_type": "audit_event: entity kind (account|onboarding|property|dock|drone|member|invite)",
+    "entity_type": "audit_event: entity kind (account|onboarding|property|dock|drone|member|invite|profile)",
     "subject_user_id": "audit_event: the affected user (null when the actor acted on self)",
     "is_view_as": "audit_event: true when an admin acted on another user's workspace",
     "is_demo": "super-property stamped on every app event AND session recording: true for anonymous demo sessions (segments demo exploration from real-user activity)",

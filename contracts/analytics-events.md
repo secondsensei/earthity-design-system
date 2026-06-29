@@ -44,6 +44,12 @@ action — the trigger for the surgical demo survey). Demo sessions stay **anony
 (never `identify()`'d — every anon session is the one demo@outpost.com row) but stitch to the real user
 on signup. Note: distinct from the website's deferred `section_view` (scroll depth).
 
+Client (first-login profile capture — real users only, after the persona prompt):
+`profile_prompt_shown{persona}`, `profile_completed{persona}`, `profile_prompt_dismissed{persona}`.
+Collects name + org (the funnel defers identity); skippable but re-shows until completed. Payloads carry
+`persona` only — **no name/org/email** (PII stays out of analytics). The name/org writes are audited
+(`profile_updated`, entityType `profile`).
+
 Client (performance): `client_fetch_timed{path,durationMs,ok,status}`,
 `optimistic_commit_timed{persona,durationMs,ok}`. Server-side DB-query timing is **not** a PostHog event
 (a Prisma hook has no serverless flush point) — slow queries go to `AppLog` (admin System tab) via `log.warn`.
