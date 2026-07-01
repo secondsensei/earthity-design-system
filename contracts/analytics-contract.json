@@ -55,14 +55,15 @@
       "audit_event"
     ]
   },
-  "cta": ["host", "fly", "operatorOnboard", "signIn", "bookCall", "contact"],
+  "cta": ["host", "fly", "operatorOnboard", "signIn", "bookCall", "contact", "demo"],
   "ctaDestinations": {
     "host": "https://outpost.earthity.com/host/onboard",
     "fly": "https://outpost.earthity.com/operator/onboard",
     "operatorOnboard": "https://outpost.earthity.com/operator/onboard",
     "signIn": "https://outpost.earthity.com/",
     "bookCall": "https://calendly.com/bhowmiktanumaya/tanumaya",
-    "contact": "/contact/"
+    "contact": "/contact/",
+    "demo": "https://outpost.earthity.com/demo"
   },
   "properties": {
     "cta": "which primary CTA role was clicked (one of the `cta` enum)",

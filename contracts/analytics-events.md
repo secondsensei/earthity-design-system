@@ -15,7 +15,7 @@ machine-readable core that code/tests consume). Companions:
 ## Website events (`earthity-website`, captured in `public/js/analytics.js`)
 | Event | Fires when | Properties |
 |---|---|---|
-| `cta_clicked` | click on any primary CTA anchor (`data-url-key` ∈ host/fly/operatorOnboard/signIn/bookCall, **or** href `/contact/`). One physical click = one event. | `cta, page, section, label, destination, is_outbound` |
+| `cta_clicked` | click on any primary CTA anchor (`data-url-key` ∈ host/fly/operatorOnboard/signIn/bookCall/demo, **or** href `/contact/`). One physical click = one event. | `cta, page, section, label, destination, is_outbound` |
 | `lead_submitted` | contact form POST returns 200 (delivery, not attempt) | `form, page, source, email_domain, email_type` |
 | `newsletter_subscribed` | newsletter POST returns 200 | `page, email_domain, email_type` |
 | `data_room_requested` | valid submit of `#data-room-form` | `page, email_domain, email_type` |
@@ -74,6 +74,7 @@ host ≠ page host; `email_domain` = domain only (no local part); `email_type` =
 | Operator acquisition | `$pageview` → `cta_clicked{cta∈[fly,operatorOnboard]}` → app `operator_onboard_step_viewed{step:1}` → `operator_onboard_completed` → `signed_up` |
 | Program lead | `cta_clicked{cta:'contact'}` → `$pageview(/contact/)` → `lead_submitted` |
 | Book-a-call (SQL) | `$pageview` → `cta_clicked{cta:'bookCall'}` |
+| Demo entry (www→app) | `$pageview` → `cta_clicked{cta:'demo', destination:'outpost'}` → app `$pageview` (`/operator`) — stitched by `distinct_id`. The app emits no `demo_entered` here (the anonymous session is analytics-suppressed by redirect time), so `cta_clicked{cta:'demo'}` is the top-of-funnel signal. `outpost.earthity.com/demo` starts the anon session server-side and 302s to the operator dashboard. |
 | Investor / data-room | `$pageview(/data-room/)` → `data_room_requested` → `data_room_accessed` |
 | Cross-property www→outpost | anonymous `$pageview`(www) → `cta_clicked{destination:'outpost'}` → app onboarding → `signed_up` (stitched by `distinct_id`) |
 | Demo engagement (`is_demo:true`) | `demo_entered` → `dashboard_viewed` → `entity_detail_opened` → (`entity_edited` \| `add_flow_started`) → `cta_clicked{cta:'signIn'}` → `signed_up` |
