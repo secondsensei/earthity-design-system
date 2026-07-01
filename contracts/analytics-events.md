@@ -50,6 +50,11 @@ Collects name + org (the funnel defers identity); skippable but re-shows until c
 `persona` only — **no name/org/email** (PII stays out of analytics). The name/org writes are audited
 (`profile_updated`, entityType `profile`).
 
+Client (org join requests — the user-initiated path to join an existing org, admin-approved):
+`join_requested{persona,via}` where `via ∈ {domain,search}` (email-domain banner vs name typeahead). No org
+name/id in the payload. Server-truth request lifecycle is audited (`join_requested` / `join_request_approved`
+/ `join_request_denied`, entityType `join_request`) → also dual-emitted to PostHog as `audit_event`.
+
 Client (performance): `client_fetch_timed{path,durationMs,ok,status}`,
 `optimistic_commit_timed{persona,durationMs,ok}`. Server-side DB-query timing is **not** a PostHog event
 (a Prisma hook has no serverless flush point) — slow queries go to `AppLog` (admin System tab) via `log.warn`.
