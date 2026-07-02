@@ -55,6 +55,12 @@ Client (org join requests — the user-initiated path to join an existing org, a
 name/id in the payload. Server-truth request lifecycle is audited (`join_requested` / `join_request_approved`
 / `join_request_denied`, entityType `join_request`) → also dual-emitted to PostHog as `audit_event`.
 
+Client (guided dashboard tour — demo **and** brand-new signups; `is_demo` segments demo from real): `tour_started{persona,total}`,
+`tour_step_viewed{persona,step,key,total}`, `tour_completed{persona,total}`, `tour_skipped{persona,step,key,total}`. The Arcade-style
+spotlight walkthrough auto-plays **once per persona** in demo and **once** for a brand-new real signup; `step` is the 1-based index, `key`
+the step target (`overview|docks|fleet|integration|…`), `total` the step count. `demo_converted{persona}` fires when a demo visitor takes
+the tour's "Create account" CTA (persona chosen, onboarding funnel skipped) → routes to the empty dashboard.
+
 Client (performance): `client_fetch_timed{path,durationMs,ok,status}`,
 `optimistic_commit_timed{persona,durationMs,ok}`. Server-side DB-query timing is **not** a PostHog event
 (a Prisma hook has no serverless flush point) — slow queries go to `AppLog` (admin System tab) via `log.warn`.

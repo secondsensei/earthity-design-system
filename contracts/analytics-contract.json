@@ -1,6 +1,6 @@
 {
   "$comment": "Canonical cross-repo analytics contract for earthity. Single source of truth consumed by earthity-website (static www marketing site) and earthity-dev (Outpost Next.js app). Both repos pull this via the earthity-design-system submodule. Human-readable companions in this folder: architecture.md, routes.md, analytics-events.md. Change events/cta/regions HERE, then update both consumers in lockstep.",
-  "version": 1,
+  "version": 2,
   "posthog": {
     "projectKeyEnvVar": "NEXT_PUBLIC_POSTHOG_KEY",
     "projectKey": "phc_wG7ChQBd9u6jBdNag4qGUbDYBpiFyJVKDkRBtAKkvGLG",
@@ -44,6 +44,11 @@
       "profile_completed",
       "profile_prompt_dismissed",
       "join_requested",
+      "tour_started",
+      "tour_step_viewed",
+      "tour_completed",
+      "tour_skipped",
+      "demo_converted",
       "client_fetch_timed",
       "optimistic_commit_timed"
     ],
@@ -76,7 +81,7 @@
     "source": "originating surface of a conversion (e.g. 'footer', 'contact')",
     "email_domain": "domain part of a submitted email, no local part (e.g. 'acme.com')",
     "email_type": "'corporate' or 'free' — classified via freeEmailProviders",
-    "step": "drone-program Stack step id reached (e.g. '01'..'06')",
+    "step": "drone-program Stack step id ('01'..'06'); also the numeric step index for onboarding + tour step events",
     "step_label": "human label of the Stack step (e.g. 'Mission')",
     "action": "audit_event: the audit action code (see lib/activity/actions.ts)",
     "entity_type": "audit_event: entity kind (account|onboarding|property|dock|drone|member|invite|profile|join_request)",
@@ -84,7 +89,7 @@
     "subject_user_id": "audit_event: the affected user (null when the actor acted on self)",
     "is_view_as": "audit_event: true when an admin acted on another user's workspace",
     "is_demo": "super-property stamped on every app event AND session recording: true for anonymous demo sessions (segments demo exploration from real-user activity)",
-    "persona": "dashboard events: 'Host' | 'Operator'",
+    "persona": "dashboard, tour + conversion events: 'Host' | 'Operator'",
     "section": "dashboard_section_viewed: active nav section (home|fleet|map|properties|integration|settings)",
     "kind": "dashboard entity events: 'dock' | 'property'",
     "panel": "entity_detail_panel_toggled: which panel toggled ('settings'|'manifest'|'map')",
@@ -93,7 +98,9 @@
     "durationMs": "perf events (client_fetch_timed, optimistic_commit_timed): measured duration in milliseconds",
     "ok": "perf events: whether the operation succeeded",
     "status": "client_fetch_timed: HTTP status code",
-    "path": "client_fetch_timed: request pathname (no query string / PII)"
+    "path": "client_fetch_timed: request pathname (no query string / PII)",
+    "total": "tour events: total number of steps in the guided tour",
+    "key": "tour_step_viewed / tour_skipped: the step's target key (e.g. 'overview'|'docks'|'fleet'|'integration')"
   },
   "urlStitch": {
     "param": "distinct_id",
