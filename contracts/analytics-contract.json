@@ -22,7 +22,8 @@
       "newsletter_subscribed",
       "data_room_requested",
       "data_room_accessed",
-      "stack_step_view"
+      "stack_step_view",
+      "brochure_opened"
     ],
     "app": [
       "signed_up",

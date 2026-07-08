@@ -21,6 +21,7 @@ machine-readable core that code/tests consume). Companions:
 | `data_room_requested` | valid submit of `#data-room-form` | `page, email_domain, email_type` |
 | `data_room_accessed` | success branch, just before the Drive redirect | `page, email_domain, email_type` |
 | `stack_step_view` | a drone-program Stack step is opened (nav click / card expand) | `step, step_label, page` |
+| `brochure_opened` | the charging-dock spec-sheet download modal is opened (`Download spec` click) | `page` |
 
 `$pageview` (built-in, `capture_pageview:true`) anchors page-to-page funnels and auto-carries
 `$current_url` + `utm_*` + `$referring_domain`. `$autocapture` is a **discovery layer only** — never a
@@ -79,6 +80,7 @@ host ≠ page host; `email_domain` = domain only (no local part); `email_type` =
 | Host acquisition | `$pageview` → `cta_clicked{cta:'host', destination:'outpost'}` → app `host_onboard_step_viewed{step:1}` → `host_onboard_completed` → `signed_up` |
 | Operator acquisition | `$pageview` → `cta_clicked{cta∈[fly,operatorOnboard]}` → app `operator_onboard_step_viewed{step:1}` → `operator_onboard_completed` → `signed_up` |
 | Program lead | `cta_clicked{cta:'contact'}` → `$pageview(/contact/)` → `lead_submitted` |
+| Brochure (spec sheet) | `$pageview(/charging-dock/)` → `brochure_opened` → `lead_submitted{form:'brochure'}` |
 | Book-a-call (SQL) | `$pageview` → `cta_clicked{cta:'bookCall'}` |
 | Demo entry (www→app) | `$pageview` → `cta_clicked{cta:'demo', destination:'outpost'}` → app `$pageview` (`/operator`) — stitched by `distinct_id`. The app emits no `demo_entered` here (the anonymous session is analytics-suppressed by redirect time), so `cta_clicked{cta:'demo'}` is the top-of-funnel signal. `outpost.earthity.com/demo` starts the anon session server-side and 302s to the operator dashboard. |
 | Investor / data-room | `$pageview(/data-room/)` → `data_room_requested` → `data_room_accessed` |
