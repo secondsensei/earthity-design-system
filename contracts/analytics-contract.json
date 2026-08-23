@@ -95,7 +95,7 @@
     "kind": "dashboard entity events: 'dock' | 'property'",
     "panel": "entity_detail_panel_toggled: which panel toggled ('settings'|'manifest'|'map')",
     "open": "entity_detail_panel_toggled: true when the panel is open after the toggle",
-    "field": "entity_edited: which field changed (rename|color|location|plots|model|delete)",
+    "field": "entity_edited: which field changed (rename|color|location|plots|model|delete|drone_added|drone_removed)",
     "durationMs": "perf events (client_fetch_timed, optimistic_commit_timed): measured duration in milliseconds",
     "ok": "perf events: whether the operation succeeded",
     "status": "client_fetch_timed: HTTP status code",
