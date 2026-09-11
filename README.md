@@ -90,6 +90,9 @@ earthity's visual system inherits from IBM's Carbon Design System — a grid-dis
 - **24px (pill)**: Tags and labels only.
 - **50%**: Avatars and circular icon containers.
 
+### Approved exception — the parallax card
+`.eu-parallax-card` (the catalog pager card, owner-approved 2026-08-29) is the one sanctioned departure from the rules above: a 28px card radius, two gradients (the caption's legibility scrim and the pointer-tracking shine) and a per-artwork palette in place of Blue 60 (the sky theme's `#0a348c`). The palette lives in the theme modifier, not in tokens, because each colour only works behind its own art plates. Do not extend the exception to other components; see the section header in `earthity-components.css`.
+
 ### Borders
 - Minimal. Gray 30 (`#c6c6c6`) for dividers and subtle separators.
 - Inputs: bottom-border only (2px). No boxed inputs.
@@ -177,6 +180,7 @@ assets/
   icons/                           — Carbon icon subset; see assets/icons/README.md
   wordmark-dark.svg                — earthity wordmark (dark on light)
   wordmark-white.svg               — earthity wordmark (white on dark)
+  parallax-card/                   — eu-parallax-card art: check-box PNGs + one folder per theme (sky/)
 preview/                           — Foundation + component preview pages
   colors-primary.html              — Primary + interactive color swatches
   colors-neutral.html              — Full gray scale + surface layering
@@ -196,6 +200,7 @@ preview/                           — Foundation + component preview pages
   components-overlays.html         — Native modal, details, popover; spec sheets
   components-feedback.html         — Empty, skeletons, errors, toasts
   components-data.html             — Stat blocks, mono-IDs, tables
+  components-parallax-card.html    — Catalog pager card (sky theme) + behaviour contract
 examples/                          — Worked example — the canonical product consuming the system
   outpost/index.html               — Outpost app (hosts + operators + network map)
 ```
