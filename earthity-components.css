@@ -1069,6 +1069,92 @@
   overflow: hidden;
 }
 
+/* A THEME MAY DRAW ITSELF rather than be art. The system owns this box and nothing
+   else: no JavaScript ships from here, so the consumer owns whatever draws into it —
+   the same split the tilt, the paging and the crossfade already follow. A theme with
+   no renderer never mounts one, so it costs nothing. First in the scene, because it
+   IS the backdrop: the shine and the scrim still sit over it. */
+.eu-parallax-card__canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* THE OPENER — a range input for a drawn theme whose model has moving parts (the charging
+   dock's six leaves). Outside `__card` in the markup, like the toggle and the pager, so it
+   does not tilt with the scene it controls; a plate of its own over the artwork, because
+   the field behind it is bright at the top and dark at the bottom and a bare slider would
+   lose its track against one or the other. Only rendered by a consumer that has a model to
+   open, so most cards never see it. */
+.eu-parallax-card__opener {
+  position: absolute;
+  left: 50%;
+  /* Clear of the caption, which is anchored 28px up and GROWS UPWARD: an 11px eyebrow, an
+     8px gap and a 42px/1.05 title put its top around 123px. At 96px this plate sat on the
+     eyebrow and hid it. */
+  bottom: 140px;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  background-color: rgb(255 255 255 / 0.92);
+  border: 1px solid rgb(var(--eu-parallax-card-shade) / 0.14);
+  box-shadow: 0 2px 8px rgb(var(--eu-parallax-card-shade) / 0.18);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.16px;
+  color: var(--gray-70);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.eu-parallax-card__opener-end { white-space: nowrap; }
+
+/* The track and thumb are the system's, but a range input's parts are only reachable
+   through vendor pseudo-elements, which cannot be combined in one selector list — one
+   browser failing to parse the selector drops the whole rule. Hence the duplication. */
+.eu-parallax-card__opener-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 112px;
+  height: 24px;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.eu-parallax-card__opener-range:disabled { cursor: default; opacity: 0.4; }
+.eu-parallax-card__opener-range:focus-visible { outline: 2px solid var(--blue-60); outline-offset: 3px; }
+.eu-parallax-card__opener-range::-webkit-slider-runnable-track { height: 3px; background-color: var(--gray-30); }
+.eu-parallax-card__opener-range::-moz-range-track { height: 3px; background-color: var(--gray-30); }
+.eu-parallax-card__opener-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+  margin-top: -9px;
+  border: 2px solid var(--white);
+  border-radius: var(--radius-circle);
+  background-color: var(--blue-60);
+  box-shadow: 0 0 0 1px var(--gray-30);
+  cursor: grab;
+}
+.eu-parallax-card__opener-range::-moz-range-thumb {
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--white);
+  border-radius: var(--radius-circle);
+  background-color: var(--blue-60);
+  box-shadow: 0 0 0 1px var(--gray-30);
+  cursor: grab;
+}
+.eu-parallax-card__opener-range:active::-webkit-slider-thumb { cursor: grabbing; }
+.eu-parallax-card__opener-range:active::-moz-range-thumb { cursor: grabbing; }
+
 /* `pixelated` on every plate: the art is pixel art, and smoothing it
    turns crisp edges into mush at the 120–144% scales used here. */
 .eu-parallax-card__sky {
@@ -1123,6 +1209,28 @@
 @keyframes eu-parallax-card-drift {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
+}
+
+/* SCENERY PLATES — the generic slots between the clouds and the
+   shine. The sky theme is two cloud bands over a gradient and uses
+   none of them; a landscape theme stacks several, each parallaxing
+   further than the one behind it.
+
+   ART-FREE ON PURPOSE. The consumer renders a fixed number of these
+   in source order and names none of them, so a theme is still a pure
+   CSS change: `display:none` here means a theme that declares no
+   plate renders exactly as before. Each theme sets a plate's art,
+   box and depth; `aspect-ratio` stands in for the intrinsic size an
+   <img> would have carried, because these are backgrounds. */
+.eu-parallax-card__plate {
+  position: absolute;
+  display: none;
+  background: top center / 100% auto no-repeat;
+  image-rendering: pixelated;
+  transform: translate3d(
+    calc(var(--eu-parallax-card-mx) * var(--eu-parallax-card-plate-x, 0px)),
+    calc(var(--eu-parallax-card-my) * var(--eu-parallax-card-plate-y, 0px)),
+    0);
 }
 
 .eu-parallax-card__shine {
@@ -1349,3 +1457,67 @@
 .eu-parallax-card--sky .eu-parallax-card__clouds--far .eu-parallax-card__roll::after { background-image: url('assets/parallax-card/sky/clouds-far.png'); }
 .eu-parallax-card--sky .eu-parallax-card__clouds--near .eu-parallax-card__roll::before,
 .eu-parallax-card--sky .eu-parallax-card__clouds--near .eu-parallax-card__roll::after { background-image: url('assets/parallax-card/sky/clouds-near.png'); }
+
+/* ── Theme: field ── the charging-dock hero's setting: a white card with a
+   live grass field drawn into `__canvas`.
+
+   THIS THEME IS NOT ART, IT IS A SURFACE FOR A RENDERER. The card's other
+   themes are pixel-art plates over a drifting sky, all expressible here;
+   this one is instanced WebGL geometry with a breeze in a vertex shader,
+   which is not. So the stylesheet's whole job is to get out of the way:
+   paint the card white, stand every CSS art layer down, and keep the
+   scrim and caption legible over whatever the renderer draws.
+
+   The consumer supplies the renderer (the design system ships no JS) —
+   app/components/catalog/grass-field.ts in the Outpost app, lifted from
+   the marketing site's hero. A consumer that mounts no canvas gets a
+   plain white card, which is a correct card.
+
+   Palette note: the greens live in the shaders, not here, so this block
+   deliberately names none of them. `-shade` is the scrim and caption
+   ground, sampled from the field's darkest gravel. */
+.eu-parallax-card--field {
+  --eu-parallax-card-bg: 255 255 255;
+  --eu-parallax-card-shade: 18 22 14;
+}
+/* THE CARD NEEDS ITS OWN EDGE HERE. Every other theme's shadow is cast in
+   its own background colour, which works while that colour is dark — but
+   this theme's IS the page white, so the generic shadow lands white on
+   white and the card's top half dissolves into the page. */
+.eu-parallax-card--field .eu-parallax-card__card {
+  box-shadow:
+    0 2px 4px rgb(26 42 28 / 0.18),
+    0 40px 70px -28px rgb(26 42 28 / 0.42);
+}
+/* The canvas draws the sky, the ground and the fog between them, so every CSS art
+   layer stands down. The shine goes too: a soft-light highlight over a photoreal
+   field reads as a smear on glass, and the design has none. */
+.eu-parallax-card--field .eu-parallax-card__sky,
+.eu-parallax-card--field .eu-parallax-card__clouds,
+.eu-parallax-card--field .eu-parallax-card__plate,
+.eu-parallax-card--field .eu-parallax-card__shine { display: none; }
+
+/* Bottom-only, and further down the card than the pixel-art themes need: the field
+   is bright to its base, where those fade to a dark foreground on their own. */
+.eu-parallax-card--field .eu-parallax-card__scrim {
+  background: linear-gradient(
+    to bottom,
+    rgb(var(--eu-parallax-card-shade) / 0) 58%,
+    rgb(var(--eu-parallax-card-shade) / 0.42) 78%,
+    rgb(var(--eu-parallax-card-shade) / 0.82) 100%);
+}
+
+/* Only the shadow changes: a flat shot over grass wants a shorter, greener one than the
+   pixel-art themes' navy. Its parallax stays the generic pointer throw — an entry that
+   has a 3D MODEL draws no flat shot at all, so there is no sprite here to keep in step
+   with the renderer's camera. */
+.eu-parallax-card--field .eu-parallax-card__product {
+  filter: drop-shadow(0 18px 22px rgb(24 40 26 / 0.28));
+}
+/* A white box on a white card reads as nothing, so the unticked state
+   leans harder on its shadow here than over artwork. */
+.eu-parallax-card--field .eu-parallax-card__check {
+  filter: drop-shadow(0 6px 10px rgb(var(--eu-parallax-card-shade) / 0.3))
+    drop-shadow(0 0 1px rgb(var(--eu-parallax-card-shade) / 0.45));
+}
+

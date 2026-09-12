@@ -227,7 +227,7 @@ That gives Claude awareness of the system from cold start (before it touches any
 | Mark disabled | native `disabled` or `aria-disabled="true"` |
 | Apply dark theme | `<html data-theme="dark">` |
 | Use a Carbon icon | inline SVG with `<use href="#i-{name}">` and `class="eu-icon eu-icon--24"` (paths in `assets/icons/README.md`) |
-| Add a catalog pager card | `<div class="eu-parallax-card eu-parallax-card--sky">…</div>` — full markup + the JS behaviour contract (tilt vars, crossfade, ←/→, aria-live) in `preview/components-parallax-card.html`. Art is a theme modifier; a consumer serving the CSS statically must also serve `assets/parallax-card/{theme}/*.png` |
+| Add a catalog pager card | `<div class="eu-parallax-card eu-parallax-card--sky">…</div>` — full markup + the JS behaviour contract (tilt vars, crossfade, ←/→, aria-live) in `preview/components-parallax-card.html`. Art is a theme modifier, and a theme is EITHER painted or drawn: a painted one (`--sky`) needs its `assets/parallax-card/{theme}/*.png` served alongside the CSS, while a drawn one (`--field`) needs the consumer to mount `__canvas` and supply the renderer — no JS ships from here |
 
 ---
 
