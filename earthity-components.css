@@ -1013,7 +1013,8 @@
    writes only: --eu-parallax-card-mx/-my (pointer offset from the
    card centre, -0.5…0.5), -sx/-sy (shine centre, %), -shine
    (0…1), the __card's rotateX/rotateY transform, `data-motion=
-   "gyro"` while a phone steers, and per product shot
+   "gyro"` while a phone steers, -shot-travel when the screen is too
+   tight for the full throw, and per product shot
    --eu-parallax-card-fit-w/-x/-y. The cloud drift is pure CSS.
    Markup + behaviour contract: preview/components-parallax-card.html
    ============================================================ */
@@ -1029,6 +1030,13 @@
   --eu-parallax-card-sx: 50%;
   --eu-parallax-card-sy: 50%;
   --eu-parallax-card-shine: 0;
+  /* How much of the product shot's parallax throw to use, 0…1. The
+     shot overhangs the card on purpose, so where the card nearly
+     fills the screen — a phone — the full throw carries the art past
+     the viewport, which clips it mid-wing. A consumer measures the
+     room it has and dials the throw back; the card's rotation and the
+     plates behind it, which the card clips anyway, stay full. */
+  --eu-parallax-card-shot-travel: 1;
   /* Palette as RGB triplets (alpha is applied per use) and drift
      periods; a theme modifier overrides them. One plate width per
      period, so these are 5 and 9 px/s on the 340px card. */
@@ -1150,7 +1158,11 @@
   pointer-events: none;
   filter: drop-shadow(0 30px 34px rgb(var(--eu-parallax-card-shade) / 0.42));
   transform: translate(-50%, -50%)
-    translate3d(calc(var(--eu-parallax-card-mx) * 52px), calc(var(--eu-parallax-card-my) * 32px), 60px);
+    translate3d(
+      calc(var(--eu-parallax-card-mx) * 52px * var(--eu-parallax-card-shot-travel)),
+      calc(var(--eu-parallax-card-my) * 32px * var(--eu-parallax-card-shot-travel)),
+      60px
+    );
   /* Paging fades the new shot in over the outgoing one (the --out
      twin, earlier in source order so it sits below). `both` holds each
      end, so the pair settles without a timer. Opacity only: the
