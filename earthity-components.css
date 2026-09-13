@@ -1366,9 +1366,23 @@
 }
 
 /* THE SELECT HINT (opt-in, inside __check while unpressed): a ghost of
-   the checked box wipes in over 2s, holds 3s, fades, and repeats a
-   minute later — one 60s keyframe loop, no timers. steps(13) is one
-   4px pixel row per step, so the wipe never slices a row in half. */
+   the checked box wipes in over 2s, holds 1.5s, fades, and comes back
+   ~11s later — one 15s keyframe loop, no timers. steps(13) is one 4px
+   pixel row per step, so the wipe never slices a row in half.
+
+   THE HOLD HALVED AND THE PERIOD QUARTERED (owner, 2026-09-12), from 3s
+   held and a 60s loop. The drawing-in is the part that teaches — it shows
+   the box being ticked — while the hold is just the finished state
+   sitting there, which is what the box already looks like once ticked, so
+   the held frames were the least useful in the cycle and the most of it.
+   Once a minute also meant someone who arrived mid-cycle could work the
+   whole screen and see the hint at most once. The wipe itself is
+   UNCHANGED at 2s: it is paired with steps(13) and shortening it makes
+   the rows flick past rather than draw.
+
+   Percentages are of the 15s period: 2s = 13.3333%, +1.5s hold =
+   23.3333%, +0.6s fade = 27.3333%. Change the duration and these all
+   have to be recomputed — that is the cost of one loop and no timers. */
 .eu-parallax-card__check-hint {
   position: absolute;
   inset: 0;
@@ -1376,14 +1390,14 @@
   background: url('assets/parallax-card/check-box-on.png') center / 52px 52px no-repeat;
   image-rendering: pixelated;
   opacity: 0;
-  animation: eu-parallax-card-check-hint 60s linear infinite;
+  animation: eu-parallax-card-check-hint 15s linear infinite;
 }
 
 @keyframes eu-parallax-card-check-hint {
   0% { opacity: 1; clip-path: inset(0 0 100% 0); animation-timing-function: steps(13, start); }
-  3.3333% { opacity: 1; clip-path: inset(0 0 0 0); }
-  8.3333% { opacity: 1; clip-path: inset(0 0 0 0); }
-  9.3333% { opacity: 0; clip-path: inset(0 0 0 0); }
+  13.3333% { opacity: 1; clip-path: inset(0 0 0 0); }
+  23.3333% { opacity: 1; clip-path: inset(0 0 0 0); }
+  27.3333% { opacity: 0; clip-path: inset(0 0 0 0); }
   100% { opacity: 0; clip-path: inset(0 0 0 0); }
 }
 
