@@ -1453,6 +1453,34 @@
   .eu-parallax-card { width: 280px; }
   .eu-parallax-card__card { height: auto; aspect-ratio: 3 / 4; }
   .eu-parallax-card__caption { left: 20px; right: 126px; bottom: 20px; }
+  /* The opener moves to the top. At 140px from the bottom its plate lies
+     across the model itself on a card this size, so it sits above the
+     model, 20px down, centred. A card with the toggle keeps the plate
+     out of the toggle's top-right corner (24px in, 52px square). The
+     plate sits 20px in like the caption and is centred on the toggle's
+     row. Its track narrows until the plate ends 12px short of the toggle. */
+  .eu-parallax-card__opener { top: 20px; bottom: auto; }
+  .eu-parallax-card:has(.eu-parallax-card__check) .eu-parallax-card__opener {
+    left: 20px;
+    top: 29px;
+    transform: none;
+    gap: 6px;
+    padding: 6px 8px;
+  }
+  .eu-parallax-card:has(.eu-parallax-card__check) .eu-parallax-card__opener-range { width: 72px; }
+}
+
+/* iOS: every iOS browser is WebKit, and WebKit on iOS blanks the card for
+   a few seconds at a time while a phone's attitude tilts it, as long as
+   __card keeps the preserve-3d context. That context is what lets the
+   shot and the caption float in front of the card. The cause was
+   isolated on a real iPhone (2026-09-13) by switching layers off one at a
+   time; only a flat card stopped it, and no emulator reproduces it. Flat
+   keeps the tilt and every parallax layer; only the push toward the
+   viewer goes. -webkit-touch-callout exists only in iOS WebKit, so
+   desktop and Android keep the depth. */
+@supports (-webkit-touch-callout: none) {
+  .eu-parallax-card__card { transform-style: flat; }
 }
 
 /* While a phone's attitude steers the card, a smoothed rotation arrives
