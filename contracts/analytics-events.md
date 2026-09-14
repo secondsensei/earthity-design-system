@@ -15,7 +15,7 @@ machine-readable core that code/tests consume). Companions:
 ## Website events (`earthity-website`, captured in `public/js/analytics.js`)
 | Event | Fires when | Properties |
 |---|---|---|
-| `cta_clicked` | click on any primary CTA anchor (`data-url-key` ∈ host/fly/operatorOnboard/signIn/bookCall/demo, **or** href `/contact/`). One physical click = one event. | `cta, page, section, label, destination, is_outbound` |
+| `cta_clicked` | click on any primary CTA anchor (`data-url-key` ∈ host/operatorOnboard/signIn/bookCall/demo, **or** href `/contact/`). One physical click = one event. | `cta, page, section, label, destination, is_outbound` |
 | `lead_submitted` | contact form POST returns 200 (delivery, not attempt) | `form, page, source, email_domain, email_type` |
 | `newsletter_subscribed` | newsletter POST returns 200 | `page, email_domain, email_type` |
 | `data_room_requested` | valid submit of `#data-room-form` | `page, email_domain, email_type` |
@@ -78,7 +78,7 @@ host ≠ page host; `email_domain` = domain only (no local part); `email_type` =
 | Funnel | Steps |
 |---|---|
 | Host acquisition | `$pageview` → `cta_clicked{cta:'host', destination:'outpost'}` → app `host_onboard_step_viewed{step:1}` → `host_onboard_completed` → `signed_up` |
-| Operator acquisition | `$pageview` → `cta_clicked{cta∈[fly,operatorOnboard]}` → app `operator_onboard_step_viewed{step:1}` → `operator_onboard_completed` → `signed_up` |
+| Operator acquisition | `$pageview` → `cta_clicked{cta∈[fly,operatorOnboard]}` (`fly` is retired — 2026-09-13; kept here so older events still count) → app `operator_onboard_step_viewed{step:1}` → `operator_onboard_completed` → `signed_up` |
 | Program lead | `cta_clicked{cta:'contact'}` → `$pageview(/contact/)` → `lead_submitted` |
 | Brochure (spec sheet) | `$pageview(/charging-dock/)` → `brochure_opened` → `lead_submitted{form:'brochure'}` |
 | Book-a-call (SQL) | `$pageview` → `cta_clicked{cta:'bookCall'}` |

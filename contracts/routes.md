@@ -35,11 +35,12 @@ Signup happens at the **final funnel step** (`ClaimSpot` host step 4 / `CreateAc
 | www `cta` (data-url-key) | resolves to | app entry |
 |---|---|---|
 | `host` | `outpost.earthity.com/host/onboard` | `HostFunnel` → `host_onboard_step_viewed{step:1}` |
-| `fly` / `operatorOnboard` | `outpost.earthity.com/operator/onboard` | `OperatorFunnel` → `operator_onboard_step_viewed{step:1}` |
+| `operatorOnboard` | `outpost.earthity.com/operator/onboard` | `OperatorFunnel` → `operator_onboard_step_viewed{step:1}` |
 | `signIn` | `outpost.earthity.com/` | `AuthLanding` |
 | `bookCall` | `calendly.com/bhowmiktanumaya/tanumaya` | (external — Calendly) |
 | `contact` | `/contact/` (www-internal) | — |
 
-`fly` and `operatorOnboard` resolve to the **same** operator pipeline; they remain distinct CTA labels
-so placement intent is preserved on the `cta` property. Canonical destinations live in
+`fly` was retired on 2026-09-13: it resolved to the same operator pipeline as `operatorOnboard`, and
+its `/fly` route no longer exists. Placement intent lives on `data-cta-section`; events from before
+the change still carry `cta: 'fly'`. Canonical destinations live in
 `analytics-contract.json` → `ctaDestinations`.
